@@ -10,35 +10,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script type="text/javascript">
-
-		function show_login() {
-			$('#login').animate({opacity: '1'});
-			$('#login').css({"visibility":"visible"});
-		}
-		function hide_login() { 
-			$('#login').animate({opacity: '0'},500);
-			setTimeout(
-			  function() 
-			  {
-			 	 $('#login').css({"visibility":"hidden"});
-			  }, 400);		
-		}
-
-		function show_regist() {
-			$('#rejestracja').animate({opacity: '1'});
-			$('#rejestracja').css({"visibility":"visible"});
-		}
-		function hide_regist() {
-			$('#rejestracja').animate({opacity: '0'},500);
-			setTimeout(
-			  function() 
-			  {
-			 	 $('#rejestracja').css({"visibility":"hidden"});
-			  }, 400);		
-		}
-
-	</script>
 </head>
 <body>
 <div id="content">
