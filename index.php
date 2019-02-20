@@ -58,27 +58,27 @@
 			</figure>
 
 			<div id="rejestracja">
-				<form>
+				<form method="post" action="registry.php">
 					<fieldset>
 						<span>Login</span>
-						<input type="text" name="" >
+						<input type="text" name="login" >
 					</fieldset>
 
 					<fieldset>
 						<span>E-mail</span>
-						<input type="email" name="">
+						<input type="email" name="email">
 					</fieldset>
 				
 					<fieldset>
 						<span>Hasło</span>
-						<input type="password" name="">
+						<input type="password" name="pass">
 					</fieldset>
 
 					<fieldset>
 						<span>Powtórz hasło</span>
-						<input type="password" name="">
+						<input type="password" name="pass_rep">
 					</fieldset>	
-					<input type="submit" name="">				
+					<input type="submit" >				
 				</form>					
 			</div>
 		</div>
