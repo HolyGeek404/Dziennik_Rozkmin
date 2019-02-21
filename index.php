@@ -61,7 +61,7 @@
 				<form method="post" action="registry.php">
 					<fieldset>
 						<span>Login</span>
-						<input type="text" name="login" >
+						<input type="text" name="login" placeholder="3 do 15 znaków">
 					</fieldset>
 
 					<fieldset>
@@ -71,7 +71,7 @@
 				
 					<fieldset>
 						<span>Hasło</span>
-						<input type="password" name="pass">
+						<input type="password" name="pass" placeholder="Minimum 6 znaków">
 					</fieldset>
 
 					<fieldset>
