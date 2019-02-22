@@ -1,7 +1,12 @@
+<?php
+	session_start();
+
+	$gites = $_SESSION['gites'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dziennik Rozkmin</title>
+	<title>Rozkmina.pl</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="css/fontello.css">
@@ -10,8 +15,23 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script>
+
+	function error_msg()
+	{
+		alert("hi");
+	}
+
+	</script>
+
 </head>
 <body>
+<?php
+/*if(!$gites){
+	echo "<script> error_msg();</script>";
+}*/
+?>
 <div id="content">
 	<header>
 		<h2>ROZKMINY</h2>

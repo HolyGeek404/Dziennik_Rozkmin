@@ -1,4 +1,6 @@
 <?php
+	session_start();
+
 	require_once "connect.php";
 
 	$connect = mysqli_connect($host,$db_user,$db_password,$db_name);
@@ -8,25 +10,44 @@
 	$pass = $_POST['pass'];
 	$pass_rep = $_POST['pass_rep'];
 
-	$gites = true;
+	$_SESSION['gites'] = true;
 
 	if(!$connect){
 		echo mysqli_connect_error();
 	}
 	else
 	{
-		if (strlen($login) >= 3)
-		{
-			echo "gites";
+		if (strlen($login) < 3){
+			$_SESSION['gites'] = false;
 		}
-		else{
-			$gites = false;
+		else
+		{
+			if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+				$_SESSION['gites'] = false;
+			}
+			else
+			{
+				if(strlen($pass) >= 6 && strlen($pass_rep) >= 6)
+				{
+					if($pass != $pass_rep){
+						$_SESSION['gites'] = false;
+					}
+				}
+				else{
+					$_SESSION['gites'] = false;
+				}
+			}
 		}
 	}
 
-	if ($gites == false)
+	if ($_SESSION['gites'] == false)
 	{
-		echo "lipa";
+		header('Location: index.php');
+		mysqli_close($connect);
+	}
+	else
+	{
+		
 	}
 
 ?>
