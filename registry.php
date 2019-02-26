@@ -8,7 +8,7 @@
 	$login = $_POST['login'];
 	$email = $_POST['email'];
 	$pass = $_POST['pass'];
-	$pass_rep = $_POST['pass_rep'];
+	$hash_pass_rep = password_hash($_POST['pass_rep'],PASSWORD_DEFAULT);
 
 	$_SESSION['gites'] = true;
 
@@ -27,9 +27,9 @@
 			}
 			else
 			{
-				if(strlen($pass) >= 6 && strlen($pass_rep) >= 6)
+				if(strlen($pass) >= 6)
 				{
-					if($pass != $pass_rep){
+					if(!password_verify($pass,$hash_pass_rep)){						
 						$_SESSION['gites'] = false;
 					}
 				}
@@ -47,7 +47,8 @@
 	}
 	else
 	{
-		
+		mysqli_query($connect,"INSERT INTO uzytkownicy (nick,haslo,email) VALUES ('$login','$hash_pass_rep','$email')");
+		echo "poszło";
 	}
 
 ?>

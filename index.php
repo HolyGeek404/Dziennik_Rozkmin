@@ -42,8 +42,12 @@
 	<div id="options">
 		<div class="type_option">
 			<figure>
-				<img src="img/add_think.png">
+			<?php
+echo<<<END
+				<img src="img/search.png">
 				<figcaption>Dodaj rozkmine</figcaption>
+END;
+			?>
 			</figure>
 		</div>
 		<div class="type_option" id="login_option" >

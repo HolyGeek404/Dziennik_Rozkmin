@@ -81,6 +81,7 @@ span
 	display: block;
 	float: left;
 	margin: 5px 10px;
+	padding: unset;
 }
 
 
@@ -93,7 +94,7 @@ input[type="password"]
 	border-bottom: 1px solid #008aa4;
 	background-color: unset;
 	font-size: 20px;
-	margin: 0px 0px 5px 0px;
+	margin-bottom: 5px;
 	color: #008aa4;
 	display: inline-block;
 	outline: none;
