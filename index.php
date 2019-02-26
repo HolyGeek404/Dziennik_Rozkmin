@@ -21,6 +21,8 @@
 	function error_msg()
 	{
 		alert("hi");
+		// FUNKCJA KTÓRA TWORZY DIVA Z WIADOMOŚCIĄ O BŁĘDNYM 
+		// ZALOGOWANIU / REKESTRACKO
 	}
 
 	</script>
@@ -58,15 +60,15 @@ END;
 			</figure>
 
 			<div id="login" >
-				<form action="" method="post">
+				<form action="login.php" method="post">
 					<fieldset style="width:300px;">
 						<span>Login</span>
-						<input type="text" name="">
+						<input type="text" name="login">
 					</fieldset>
 				
 					<fieldset style="width:300px;">
 						<span>Hasło</span>
-						<input type="password" name="">
+						<input type="password" name="pass">
 					</fieldset>
 
 					<input type="submit" name=""  style="margin-top:30px;">

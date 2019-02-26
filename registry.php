@@ -47,8 +47,20 @@
 	}
 	else
 	{
-		mysqli_query($connect,"INSERT INTO uzytkownicy (nick,haslo,email) VALUES ('$login','$hash_pass_rep','$email')");
-		echo "poszło";
+		$result = mysqli_query($connect,"SELECT nick,email FROM uzytkownicy WHERE nick='$login' OR email='$email'");
+		$row = mysqli_num_rows($result);
+
+		if($row != 0)
+		{
+			$_SESSION['gites'] = false;
+			header('Location: index.php');
+			mysqli_close($connect);
+		}
+		else
+		{
+			mysqli_query($connect,"INSERT INTO uzytkownicy (nick,haslo,email) VALUES ('$login','$hash_pass_rep','$email')");
+		}
+	
 	}
 
 ?>
