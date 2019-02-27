@@ -1,7 +1,8 @@
 <?php
     session_start();
     require_once "connect.php";
-
+    
+    $_SESSION['gites'] = true;
     $login = $_POST['login'];
     $pass =  $_POST['pass'];
     
@@ -23,10 +24,11 @@
 
     if(password_verify($pass,$user_pass))
     {
-        echo "git";
+        header("Location: index.php");
     }
     else
     {
-        echo "lipa";
+        $_SESSION['gites'] = false;
+        header("Location: index.php");
     }
 ?>

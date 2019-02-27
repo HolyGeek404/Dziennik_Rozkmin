@@ -1,7 +1,15 @@
 <?php
 	session_start();
 
-	$gites = $_SESSION['gites'];
+	if(!$_SESSION['gites'])
+	{
+		$gites = false;
+	}
+	else
+	{
+		$_SESSION['gites'] = true;
+		$gites = true;
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,22 +25,33 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
-
-	function error_msg()
-	{
-		alert("hi");
+	var error_div = document.createElement('div');	
+	
+	function create_error_msg()
+	{			
+		$(error_div).attr('id','error_msg');
+		$('body').prepend(error_div);
+		$(error_div).prepend('<span>Wypełnij prawidłowo formularz</span>');
+		
+		setTimeout(function(){
+			$(error_div).animate({right: "0px"},800);
+		},800);
+		setTimeout(function(){
+			$(error_div).animate({right: "-350px"});
+		},4500);
+		setTimeout(function(){
+			$(error_div).remove();
+		},5000);
 		// FUNKCJA KTÓRA TWORZY DIVA Z WIADOMOŚCIĄ O BŁĘDNYM 
-		// ZALOGOWANIU / REKESTRACKO
+		// ZALOGOWANIU / REJESTRACJI
 	}
-
 	</script>
-
 </head>
 <body>
 <?php
-/*if(!$gites){
-	echo "<script> error_msg();</script>";
-}*/
+if(!$gites){
+	echo "<script>create_error_msg();</script>";
+}
 ?>
 <div id="content">
 	<header>
@@ -41,6 +60,7 @@
 	<section>
 		<h1>W tym miejscu możesz podzielić się swoimi przemyśleniami</h1>
 	</section>
+	
 	<div id="options">
 		<div class="type_option">
 			<figure>

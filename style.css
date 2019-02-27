@@ -73,18 +73,6 @@ textarea
 	white-space: pre-wrap;
 }
 
-span
-{
-	font-size: 20px;
-	width: 100px;
-	height: 40px;
-	display: block;
-	float: left;
-	margin: 5px 10px;
-	padding: unset;
-}
-
-
 input[type="text"],
 input[type="email"],
 input[type="password"]
@@ -235,6 +223,16 @@ article
 	width: 90px;
 	height: 90px;
 }
+.type_option span
+{
+	font-size: 20px;
+	width: 100px;
+	height: 40px;
+	display: block;
+	float: left;
+	margin: 5px 10px;
+	padding: unset;
+}
 
 .type_option:first-child {
 	margin-left: 25px;
@@ -284,4 +282,23 @@ article
 	transition-delay: 0.8s;
 	opacity: 0;
 	visibility: hidden;
+}
+
+#error_msg
+{
+	position: fixed;
+	width: 340px;
+	color: #e8ebef;
+	background-color: #0089a4;
+	border: 5px solid #1f4a8e;
+	text-align: center;
+	right: -350px;
+	top: 25%;
+	font-weight: bold;
+}
+#error_msg span
+{
+	padding: 7px;
+	display: block;
+	text-transform: uppercase;
 }

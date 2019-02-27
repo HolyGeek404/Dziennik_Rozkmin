@@ -4,7 +4,8 @@
 	require_once "connect.php";
 
 	$connect = mysqli_connect($host,$db_user,$db_password,$db_name);
-
+	
+	$_SESSION['gites'] = true;
 	$login = $_POST['login'];
 	$email = $_POST['email'];
 	$pass = $_POST['pass'];
@@ -54,11 +55,12 @@
 		{
 			$_SESSION['gites'] = false;
 			header('Location: index.php');
-			mysqli_close($connect);
+			mysqli_close($connect);		
 		}
 		else
 		{
 			mysqli_query($connect,"INSERT INTO uzytkownicy (nick,haslo,email) VALUES ('$login','$hash_pass_rep','$email')");
+			header('Location: index.php');
 		}
 	
 	}
