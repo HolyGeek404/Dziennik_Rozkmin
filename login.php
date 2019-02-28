@@ -24,6 +24,7 @@
 
     if(password_verify($pass,$user_pass))
     {
+        $_SESSION['user_login'] = $user_login;
         header("Location: index.php");
     }
     else

@@ -1,14 +1,14 @@
 <?php
+	error_reporting(0);
 	session_start();
 
-	if(!$_SESSION['gites'])
+	if($_SESSION['gites'])
 	{
-		$gites = false;
-	}
-	else
-	{
-		$_SESSION['gites'] = true;
 		$gites = true;
+		$login = $_SESSION['user_login'];
+	}
+	else{
+		$gites = false;
 	}
 ?>
 <!DOCTYPE html>
@@ -25,10 +25,9 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<script>
-	var error_div = document.createElement('div');	
-	
-	function create_error_msg()
+	function error_msg()
 	{			
+		var error_div = document.createElement('div');	
 		$(error_div).attr('id','error_msg');
 		$('body').prepend(error_div);
 		$(error_div).prepend('<span>Wypełnij prawidłowo formularz</span>');
@@ -50,7 +49,7 @@
 <body>
 <?php
 if(!$gites){
-	echo "<script>create_error_msg();</script>";
+	echo "<script>error_msg();</script>";
 }
 ?>
 <div id="content">
@@ -64,15 +63,31 @@ if(!$gites){
 	<div id="options">
 		<div class="type_option">
 			<figure>
-			<?php
-echo<<<END
-				<img src="img/search.png">
-				<figcaption>Dodaj rozkmine</figcaption>
-END;
-			?>
+				<img src='img/search.png'>
+				<figcaption>Przeglądaj rozkminy</figcaption>
 			</figure>
 		</div>
-		<div class="type_option" id="login_option" >
+<?php
+		if(isset($login))
+		{
+echo<<<END
+		<div class="type_option">
+
+			<figure >  
+				<img src="img/login.png">
+				<figcaption>$login</figcaption>
+			</figure>
+
+			<div id="login" >
+				/// TU SKOŃCZYŁEM - OPCJE DLA UŻYTKOWNIKA
+			</div>	
+		</div>			
+END;
+		}
+		else
+		{
+echo<<<END
+		<div class="type_option">
 
 			<figure >  
 				<img src="img/login.png">
@@ -94,9 +109,29 @@ END;
 					<input type="submit" name=""  style="margin-top:30px;">
 				</form>
 			</div>
+		</div>			
+END;
+		}
+?>	
+		
+	
+<?php
 
+if(isset($login))
+{
+echo<<<END
+		<div class="type_option">
+			<figure >
+				<img src="img/add_think.png">
+				<figcaption>Dodaj rozkmine</figcaption>
+			</figure>					
 		</div>
-		<div class="type_option" id="registry_option">
+END;
+}
+else
+{
+echo<<<END
+		<div class="type_option">
 
 			<figure >
 				<img src="img/add_user.png">
@@ -128,14 +163,9 @@ END;
 				</form>					
 			</div>
 		</div>
-	</div>
+END;
+}
+?>	
 </div>
 </body>
 </html>
-
-<!--	
-<div id="dodaj_rozkmine">
-	<a href="nowa_rozkmina.php"><i class="icon-plus"></i></a>
-</div> -
-
-->

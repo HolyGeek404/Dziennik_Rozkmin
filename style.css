@@ -187,6 +187,9 @@ article
 .type_option:first-child:hover{
 	height: 150px;
 }
+.type_option:last-child:hover{
+	height: 150px;
+}
 .type_option
 {
 	width: 300px;
