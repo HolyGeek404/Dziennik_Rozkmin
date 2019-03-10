@@ -79,7 +79,7 @@ echo<<<END
 			</figure>
 
 			<div id="login" >
-				/// TU SKOŃCZYŁEM - OPCJE DLA UŻYTKOWNIKA
+				<a href="logout.php">Wyloguj się</a>
 			</div>	
 		</div>			
 END;
@@ -112,14 +112,19 @@ echo<<<END
 		</div>			
 END;
 		}
-?>	
-		
+?>		
 	
 <?php
 
 if(isset($login))
 {
 echo<<<END
+		<style>
+			.type_option:last-child:hover{
+				height: 150px ;
+			}
+		</style>
+
 		<div class="type_option">
 			<figure >
 				<img src="img/add_think.png">
