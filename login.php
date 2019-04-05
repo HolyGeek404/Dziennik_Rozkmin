@@ -8,13 +8,14 @@
     
     $connect = mysqli_connect($host,$db_user,$db_password,$db_name);
 
-    $result = mysqli_query($connect,"SELECT nick,haslo FROM uzytkownicy WHERE nick='$login'");
+    $result = mysqli_query($connect,"SELECT nick,haslo,Iduzytkownika FROM uzytkownicy WHERE nick='$login'");
     $row = mysqli_fetch_assoc($result);
 
     if($row != NULL)
     {
         $user_login = $row['nick'];
         $user_pass = $row['haslo'];
+        $_SESSION['user_id'] = $row['Iduzytkownika'];
     }
     else
     {

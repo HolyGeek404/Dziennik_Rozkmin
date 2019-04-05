@@ -2,6 +2,7 @@
 	error_reporting(0);
 	session_start();
 
+	$_SESSION['gites'] = true;
 	if($_SESSION['gites'])
 	{
 		$gites = true;
@@ -79,11 +80,26 @@ echo<<<END
 			</figure>
 
 			<div id="login" >
-				<a href="logout.php">Wyloguj się</a>
+				<div style="width:280px; height:180px; margin:auto; padding-top:10px;">
+					<div class="user_options">						
+						<a href="profil.php">Mój profil</a>
+					</div>
+					<div class="user_options">						
+						<a href="logout.php">Wyloguj się <img src="img/logout.png"></a>	
+					</div>
+								<div style="clear: both;"></div>
+					<div class="user_options">						
+						<a href="profil.php">Mój profil</a>
+					</div>
+					<div class="user_options">						
+						<a href="logout.php">Wyloguj się <img src="img/logout.png"></a>	
+					</div>
+				</div>
 			</div>	
 		</div>			
 END;
-		}
+		}									
+
 		else
 		{
 echo<<<END

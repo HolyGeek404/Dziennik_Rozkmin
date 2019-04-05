@@ -257,11 +257,10 @@ article
 
 #login
 {
-	width: 290px;
+	width: 300px;
 	height: 200px;
 	background-color: #06434f;
 	margin: auto;
-	z-index: -2;
 	top: -1000;
 	margin-top: 20px;
 	transition-property: opacity;
@@ -305,4 +304,27 @@ article
 	padding: 7px;
 	display: block;
 	text-transform: uppercase;
+}
+
+.user_options
+{
+	width: 140px;
+	height: 90px;
+	float: left;
+	margin: auto;
+	font-size: 22px;
+	text-align: center;
+}
+.user_options a
+{
+	display: block;
+	text-decoration: unset;
+	color: #e8ebef;	
+	text-align: center;
+}
+.user_options img 
+{
+	width: 25px;
+	height: 25px;
+
 }
