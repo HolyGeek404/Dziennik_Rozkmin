@@ -48,11 +48,13 @@
 	</script>
 </head>
 <body>
+
 <?php
 if(!$gites){
 	echo "<script>error_msg();</script>";
 }
 ?>
+
 <div id="content">
 	<header>
 		<h2>ROZKMINY</h2>
@@ -110,6 +112,14 @@ echo<<<END
 				<figcaption>Zaloguj się</figcaption>
 			</figure>
 
+			<style>
+				#login
+				{
+					width: 290px;
+					height: 200px;
+				}
+			</style>
+
 			<div id="login" >
 				<form action="login.php" method="post">
 					<fieldset style="width:300px;">
@@ -127,11 +137,10 @@ echo<<<END
 			</div>
 		</div>			
 END;
-		}
+}
 ?>		
 	
 <?php
-
 if(isset($login))
 {
 echo<<<END
@@ -142,11 +151,14 @@ echo<<<END
 		</style>
 
 		<div class="type_option">
-			<figure >
-				<img src="img/add_think.png">
-				<figcaption>Dodaj rozkmine</figcaption>
-			</figure>					
-		</div>
+				<figure>
+					<a href="nowa_rozkmina.php">
+						<img src="img/add_think.png">
+						<figcaption>Dodaj rozkmine</figcaption>
+					</a>
+				</figure>			
+		</div>					
+
 END;
 }
 else

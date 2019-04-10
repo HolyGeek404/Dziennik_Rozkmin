@@ -4,7 +4,10 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
-	<title>Dziennik Rozkmin - studio twórcy</title>
+	<title>Rozkmina.pl - tu gdzie tworzy się myśl</title>
+	<style>
+
+	</style>
 </head>
 <body>
 <label>
