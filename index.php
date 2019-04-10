@@ -85,14 +85,14 @@ echo<<<END
 						<a href="profil.php">Mój profil</a>
 					</div>
 					<div class="user_options">						
-						<a href="logout.php">Wyloguj się <img src="img/logout.png"></a>	
+						<a href="logout.php">Ulubione rozkminy<img src="img/logout.png"></a>	
 					</div>
 								<div style="clear: both;"></div>
-					<div class="user_options">						
-						<a href="profil.php">Mój profil</a>
+					<div class="user_options">
+						<a href="logout.php">Wyloguj się <img src="img/logout.png"></a>							
 					</div>
 					<div class="user_options">						
-						<a href="logout.php">Wyloguj się <img src="img/logout.png"></a>	
+						<a href="profil.php">Moje rozkminy</a>
 					</div>
 				</div>
 			</div>	
