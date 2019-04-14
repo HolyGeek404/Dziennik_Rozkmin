@@ -2,7 +2,6 @@
 	error_reporting(0);
 	session_start();
 
-	$_SESSION['gites'] = true;
 	if($_SESSION['gites'])
 	{
 		$gites = true;
@@ -17,7 +16,7 @@
 <head>
 	<title>Rozkmina.pl</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="css/fontello.css">
 	<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 	<link href="https://fonts.googleapis.com/css?family=Hind+Madurai:600" rel="stylesheet">

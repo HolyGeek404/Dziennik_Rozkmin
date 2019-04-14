@@ -2,12 +2,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="add_thing.css">
+	<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
 	<title>Rozkmina.pl - tu gdzie tworzy się myśl</title>
-	<style>
-
-	</style>
 </head>
 <body>
 <label>

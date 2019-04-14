@@ -1,0 +1,28 @@
+body
+{
+	background: url("bg.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin: 0px;
+	font-family: 'Paytone One', sans-serif;
+}
+
+input[type=text]
+{
+	width: 400px;
+	height: 30px;
+	margin: 40px auto 20px auto;
+	outline: none;
+	border: none;
+	display: block;	
+	background: linear-gradient(to top, #008aa4,transparent 40%);
+}
+
+textarea
+{
+	min-width: 750px;
+	min-height: 500px;
+	width: 750px;
+	height: 500px;
+	margin: auto;
+}
