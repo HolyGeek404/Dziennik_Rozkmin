@@ -1,6 +1,6 @@
 body
 {
-	background: url("bg.jpg");
+	background: url("backgrounds/main_bg.jpg");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	margin: 0px;
@@ -53,22 +53,6 @@ fieldset{
 	padding: unset;
 	display: block;
 	width: 420px;
-}
-
-textarea
-{
-	min-width: 900px;
-	min-height: 300px;
-	padding: 15px;
-	margin: 40px 0px 0px 50px;
-	border: unset;
-	border-radius: 10px;
-	font-size: 16px;	
-	font-family: Arial Black;
-	text-align: justify;
-	color: #636363;
-	background-color: #191D1E;	
-	white-space: pre-wrap;
 }
 
 input[type="text"],

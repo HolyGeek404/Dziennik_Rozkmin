@@ -1,28 +1,54 @@
+*{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
 body
 {
-	background: url("bg.jpg");
-	background-size: 100%;
+	background: url("backgrounds/add_thing_bg.svg");
+	background-size: cover;
 	background-repeat: no-repeat;
 	margin: 0px;
-	font-family: 'Paytone One', sans-serif;
 }
 
 input[type=text]
 {
-	width: 400px;
-	height: 30px;
+	width: 610px;
+	height: 20px;
+	padding: 10px;
+	border-radius: 10px;
+	color: #022f38;
 	margin: 40px auto 20px auto;
 	outline: none;
 	border: none;
+	font-size: 23px;
 	display: block;	
-	background: linear-gradient(to top, #008aa4,transparent 40%);
+	background-color: #008aa4;
 }
-
+::placeholder
+{
+	color: #022f38;
+	font-style: italic;
+	word-spacing: 2px;
+}
 textarea
 {
-	min-width: 750px;
-	min-height: 500px;
-	width: 750px;
-	height: 500px;
+	display: block;
+	width: 950px;
+	height: 300px;
+	border-radius: 5px;
+	resize: none;
 	margin: auto;
+	background-color: #008aa4;
+	color: #022f38;
+	outline: none;
+	border: none;
+	padding: 13px;
+	font-size: 17px;
+	word-spacing: 2px;
+	text-align: justify;
+}
+
+input:focus,textarea:focus
+{
+	border: 3px solid #06434f;
 }
