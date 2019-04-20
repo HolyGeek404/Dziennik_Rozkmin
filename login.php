@@ -2,7 +2,6 @@
     session_start();
     require_once "connect.php";
     
-    $_SESSION['gites'] = true;
     $login = $_POST['login'];
     $pass =  $_POST['pass'];
     
@@ -16,17 +15,18 @@
         $user_login = $row['nick'];
         $user_pass = $row['haslo'];
         $_SESSION['user_id'] = $row['Iduzytkownika'];
-    }
-    else
-    {
-        $_SESSION['gites'] = false;
-        header("Location: index.php");
-    }
 
-    if(password_verify($pass,$user_pass))
-    {
-        $_SESSION['user_login'] = $user_login;
-        header("Location: index.php");
+        if(password_verify($pass,$user_pass))
+        {
+            $_SESSION['gites'] = true;            
+            $_SESSION['user_login'] = $user_login;
+            header("Location: index.php");
+        }
+        else
+        {
+            $_SESSION['gites'] = false;
+            header("Location: index.php");
+        }
     }
     else
     {

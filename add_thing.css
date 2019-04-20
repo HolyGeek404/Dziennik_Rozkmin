@@ -20,9 +20,10 @@ input[type=text]
 	margin: 40px auto 20px auto;
 	outline: none;
 	border: none;
-	font-size: 23px;
+	font-size: 17px;
 	display: block;	
 	background-color: #008aa4;
+	border: 3px solid #06434f;
 }
 ::placeholder
 {
@@ -30,6 +31,7 @@ input[type=text]
 	font-style: italic;
 	word-spacing: 2px;
 }
+
 textarea
 {
 	display: block;
@@ -43,12 +45,25 @@ textarea
 	outline: none;
 	border: none;
 	padding: 13px;
-	font-size: 17px;
+	font-size: 23px;
 	word-spacing: 2px;
 	text-align: justify;
+	border: 3px solid #06434f;
 }
 
-input:focus,textarea:focus
+input[type=submit]
 {
+	width: 170px;
+	height: 40px;
+	background-color: #008aa4;
+	color: #022f38;
+	outline: none;
+	border: none;
+	font-size: 17px;
+	text-align: center;
+	margin: 20px auto;
+	cursor: pointer;
 	border: 3px solid #06434f;
+	display: block;
+	border-radius: 5px;
 }
