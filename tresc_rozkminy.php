@@ -19,7 +19,7 @@
 	   	{
 	   		$wiersze = $rezulata->fetch_assoc();
 	   		$temat = $wiersze['temat'];
-	 		$tresc = $wiersze['tresc'];
+	 			$tresc = $wiersze['tresc'];
 
 	  	 	$rezulata->free_result();
 	   	}

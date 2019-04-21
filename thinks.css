@@ -1,0 +1,30 @@
+*{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+body
+{
+	background: url("backgrounds/add_thing_bg.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: fixed;
+	margin: 0px;
+}
+
+#container
+{
+	width: 1000px;
+	height: 100vh;
+	margin: auto;
+	background-color: black;
+	display: flex;
+	align-items: center;
+}
+
+#content
+{
+	width: 800px;
+	height: 600px;
+	background-color: rebeccapurple;
+	margin: auto;
+}
