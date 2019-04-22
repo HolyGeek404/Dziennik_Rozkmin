@@ -1,6 +1,6 @@
 body
 {
-	background: url("backgrounds/main_bg.jpg");
+	background: url("../backgrounds/main_bg.jpg");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	margin: 0px;
@@ -207,6 +207,7 @@ article
 {
 	width: 90px;
 	height: 90px;
+	margin-top: 5px;
 }
 .type_option span
 {

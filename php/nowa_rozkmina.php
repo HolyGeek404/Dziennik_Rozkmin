@@ -9,8 +9,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="add_think.css">
-	<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+	<link rel="stylesheet" type="text/css" href="../css/add_think.css">
+	<link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 	<title>Rozkmina.pl - tu gdzie tworzy się myśl</title>
 </head>

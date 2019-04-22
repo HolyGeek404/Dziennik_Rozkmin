@@ -4,7 +4,7 @@
 
 body
 {
-	background: url("backgrounds/add_thing_bg.svg");
+	background: url("../backgrounds/add_thing_bg.svg");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: fixed;

@@ -10,15 +10,16 @@
 	else{
 		$gites = false;
 	}
+	$user_img = $_SESSION['user_img'];
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Rozkmina.pl</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/fontello.css">
-	<link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+	<link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
 	<link href="https://fonts.googleapis.com/css?family=Hind+Madurai:600" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -65,7 +66,7 @@ if(!$gites){
 	<div id="options">
 		<div class="type_option">
 			<figure>
-				<img src='img/search.png'>
+				<img src='../img/search.png'>
 				<figcaption>Przeglądaj rozkminy</figcaption>
 			</figure>
 		</div>
@@ -73,31 +74,32 @@ if(!$gites){
 		if(isset($login))
 		{
 echo<<<END
-		<div class="type_option">
-
-			<figure >  
-				<img src="img/login.png">
-				<figcaption>$login</figcaption>
-			</figure>
-
-			<div id="login" >
-				<div style="width:280px; height:180px; margin:auto; padding-top:10px;">
-					<div class="user_options">						
-						<a href="profil.php">Mój profil</a>
+			<div class="type_option">
+	
+				<figure >  
+END;
+					echo '<img src="data:image/jpeg;base64,'.base64_encode( $user_img ).'"/>';
+echo<<<END
+					<figcaption>$login</figcaption>
+				</figure>
+				<div id="login" >
+					<div style="width:280px; height:180px; margin:auto; padding-top:10px;">
+						<div class="user_options">						
+							<a href="profil.php">Mój profil</a>
+						</div>
+						<div class="user_options">						
+							<a href="logout.php">Ulubione rozkminy<img src="../img/logout.png"></a>	
+						</div>
+									<div style="clear: both;"></div>
+						<div class="user_options">
+							<a href="logout.php">Wyloguj się <img src="../img/logout.png"></a>							
+						</div>
+						<div class="user_options">						
+							<a href="profil.php">Moje rozkminy</a>
+						</div>
 					</div>
-					<div class="user_options">						
-						<a href="logout.php">Ulubione rozkminy<img src="img/logout.png"></a>	
-					</div>
-								<div style="clear: both;"></div>
-					<div class="user_options">
-						<a href="logout.php">Wyloguj się <img src="img/logout.png"></a>							
-					</div>
-					<div class="user_options">						
-						<a href="profil.php">Moje rozkminy</a>
-					</div>
-				</div>
-			</div>	
-		</div>			
+				</div>	
+			</div>			
 END;
 		}									
 
@@ -107,7 +109,7 @@ echo<<<END
 		<div class="type_option">
 
 			<figure >  
-				<img src="img/login.png">
+				<img src="../img/login.png">
 				<figcaption>Zaloguj się</figcaption>
 			</figure>
 
@@ -152,7 +154,7 @@ echo<<<END
 		<div class="type_option">
 				<figure>
 					<a href="nowa_rozkmina.php">
-						<img src="img/add_think.png">
+						<img src="../img/add_think.png">
 						<figcaption>Dodaj rozkmine</figcaption>
 					</a>
 				</figure>			
@@ -166,7 +168,7 @@ echo<<<END
 		<div class="type_option">
 
 			<figure >
-				<img src="img/add_user.png">
+				<img src="../img/add_user.png">
 				<figcaption>Rejestracja</figcaption>
 			</figure>
 
