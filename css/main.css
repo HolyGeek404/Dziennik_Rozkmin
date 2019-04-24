@@ -13,7 +13,9 @@ nav
 	min-height: 50px;
 }
 
-figure{
+figure
+{
+	padding-top: 5px;
 	margin: unset;
 }
 
@@ -86,7 +88,6 @@ input[type="submit"]
 	cursor: pointer;
 	outline: unset;
 	transition: all, 1s, ease-out;
-	border-radius: 5px;
 }
 input[type="submit"]:focus
 {
@@ -207,7 +208,7 @@ article
 {
 	width: 90px;
 	height: 90px;
-	margin-top: 5px;
+
 }
 .type_option span
 {
@@ -240,12 +241,12 @@ article
 
 #login
 {
-	width: 300px;
+	width: 290px;
 	height: 200px;
 	background-color: #06434f;
 	margin: auto;
 	top: -1000;
-	margin-top: 20px;
+	margin-top: 10px;
 	transition-property: opacity;
 	transition-duration: 0.8s;
 	transition-delay: 0.8s;
@@ -275,7 +276,7 @@ article
 	position: fixed;
 	width: 340px;
 	color: #e8ebef;
-	background-color: #0089a4;
+	background-color: #a9bfc4;
 	border: 5px solid #1f4a8e;
 	text-align: center;
 	right: -350px;
@@ -292,11 +293,37 @@ article
 .user_options
 {
 	width: 140px;
-	height: 90px;
+	height: 100px;
 	float: left;
-	margin: auto;
+	margin: -5px auto;
 	font-size: 22px;
 	text-align: center;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.user_options::before
+{
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background-color: #0089a4;
+	width: 10%;
+	height: 15%;
+	z-index: 1;	
+	opacity: 0;
+	border-radius: 50%;
+	transition: all,0.8s;
+}
+.user_options:hover::before
+{
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	left: 0%;
+	top: 0%;
+	border-radius: 0%;
 }
 .user_options a
 {
@@ -304,6 +331,8 @@ article
 	text-decoration: unset;
 	color: #e8ebef;	
 	text-align: center;
+	margin: auto;
+	z-index: 10;
 }
 .user_options img 
 {

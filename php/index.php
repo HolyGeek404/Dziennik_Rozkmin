@@ -78,7 +78,12 @@ echo<<<END
 	
 				<figure >  
 END;
-					echo '<img src="data:image/jpeg;base64,'.base64_encode( $user_img ).'"/>';
+					if($user_img){
+						echo '<img src="data:image/jpeg;base64,'.base64_encode( $user_img ).'"/>';
+					}
+					else{
+						echo '<img src="../img/login.png"/>';
+					}
 echo<<<END
 					<figcaption>$login</figcaption>
 				</figure>
@@ -88,11 +93,11 @@ echo<<<END
 							<a href="profil.php">Mój profil</a>
 						</div>
 						<div class="user_options">						
-							<a href="logout.php">Ulubione rozkminy<img src="../img/logout.png"></a>	
+							<a href="logout.php">Ulubione rozkminy</a>	
 						</div>
 									<div style="clear: both;"></div>
 						<div class="user_options">
-							<a href="logout.php">Wyloguj się <img src="../img/logout.png"></a>							
+							<a href="logout.php">Wyloguj się </a>							
 						</div>
 						<div class="user_options">						
 							<a href="profil.php">Moje rozkminy</a>
