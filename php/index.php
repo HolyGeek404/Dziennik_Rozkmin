@@ -2,14 +2,7 @@
 	error_reporting(0);
 	session_start();
 
-	if($_SESSION['gites'])
-	{
-		$gites = true;
-		$login = $_SESSION['user_login'];
-	}
-	else{
-		$gites = false;
-	}
+	$login = $_SESSION['user_login'];
 	$user_img = $_SESSION['user_img'];
 ?>
 <!DOCTYPE html>
@@ -50,7 +43,8 @@
 <body>
 
 <?php
-if(!$gites){
+if(isset($_SESSION['isAllGood']) && !$_SESSION['isAllGood'])
+{
 	echo "<script>error_msg();</script>";
 }
 ?>
@@ -66,19 +60,21 @@ if(!$gites){
 	<div id="options">
 		<div class="type_option">
 			<figure>
-				<img src='../img/search.png'>
-				<figcaption>Przeglądaj rozkminy</figcaption>
+				<a href="../php/rozkminy.php">
+					<img src='../img/search.png'>
+					<figcaption>Przeglądaj rozkminy</figcaption>
+				</a>
 			</figure>
 		</div>
 <?php
-		if(isset($login))
+		if($login)
 		{
 echo<<<END
 			<div class="type_option">
 	
 				<figure >  
 END;
-					if($user_img){
+					if(!$login == "bad" && !$login == null){
 						echo '<img src="data:image/jpeg;base64,'.base64_encode( $user_img ).'"/>';
 					}
 					else{
@@ -147,7 +143,7 @@ END;
 ?>		
 	
 <?php
-if(isset($login))
+if(!$login == "bad" && !$login == null)
 {
 echo<<<END
 		<style>

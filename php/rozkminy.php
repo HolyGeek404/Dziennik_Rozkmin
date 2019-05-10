@@ -1,3 +1,4 @@
+//TODO change the variables name
 <!DOCTYPE html>
 <html lang="pl">
 <head>

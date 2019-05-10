@@ -1,4 +1,4 @@
-<?php
+<?php //TODO change the variables name
     session_start();
     require_once "connect.php";
     
@@ -7,31 +7,30 @@
     
     $connect = mysqli_connect($host,$db_user,$db_password,$db_name);
 
-    $result = mysqli_query($connect,"SELECT nick,haslo,Iduzytkownika,user_img FROM uzytkownicy WHERE nick='$login'");
+    $result = mysqli_query($connect,"SELECT * FROM uzytkownicy WHERE nick='$login'");
     $row = mysqli_fetch_assoc($result);
 
     if($row != NULL)
     {
-        $user_login = $row['nick'];
         $user_pass = $row['haslo'];
-        $_SESSION['user_id'] = $row['Iduzytkownika'];
-        $_SESSION['user_img'] = $row['user_img'];       
-
         if(password_verify($pass,$user_pass))
         {
-            $_SESSION['gites'] = true;            
-            $_SESSION['user_login'] = $user_login;
+            $_SESSION['user_id'] = $row['Iduzytkownika'];
+            $_SESSION['user_img'] = $row['user_img'];
+            $_SESSION['user_login'] = $row['nick'];
+            $_SESSION['isAllGood'] = True;
+
             header("Location: index.php");
         }
         else
         {
-            $_SESSION['gites'] = false;
+            $_SESSION['isAllGood'] = False;
             header("Location: index.php");
         }
     }
     else
     {
-        $_SESSION['gites'] = false;
+        $_SESSION['isAllGood'] = False;
         header("Location: index.php");
     }
 ?>
