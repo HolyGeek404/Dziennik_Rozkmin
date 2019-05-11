@@ -1,9 +1,15 @@
 <?php
+
+	// TODO create another page for registration,
+	// change the variables name,
+	// create user page and options 
+
 	error_reporting(0);
 	session_start();
 
 	$login = $_SESSION['user_login'];
 	$user_img = $_SESSION['user_img'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,13 +32,16 @@
 		$('body').prepend(error_div);
 		$(error_div).prepend('<span>Wypełnij prawidłowo formularz</span>');
 		
-		setTimeout(function(){
+		setTimeout(function()
+		{
 			$(error_div).animate({right: "0px"},800);
 		},800);
-		setTimeout(function(){
+		setTimeout(function()
+		{
 			$(error_div).animate({right: "-350px"});
 		},4500);
-		setTimeout(function(){
+		setTimeout(function()
+		{
 			$(error_div).remove();
 		},5000);
 		// FUNKCJA KTÓRA TWORZY DIVA Z WIADOMOŚCIĄ O BŁĘDNYM 
@@ -41,9 +50,10 @@
 	</script>
 </head>
 <body>
-
 <?php
-if(isset($_SESSION['isAllGood']) && !$_SESSION['isAllGood'])
+//!$_SESSION['isAllGood'] == "" && $_SESSION['isAllGood'] == NULL
+
+if($_SESSION['isAllGood'] != "" && $_SESSION['isAllGood'] == "bad")
 {
 	echo "<script>error_msg();</script>";
 }
@@ -58,14 +68,14 @@ if(isset($_SESSION['isAllGood']) && !$_SESSION['isAllGood'])
 	</section>
 	
 	<div id="options">
-		<div class="type_option">
-			<figure>
-				<a href="../php/rozkminy.php">
+		<a href="../php/rozkminy.php">
+			<div class="type_option">
+				<figure>
 					<img src='../img/search.png'>
 					<figcaption>Przeglądaj rozkminy</figcaption>
-				</a>
-			</figure>
-		</div>
+				</figure>
+			</div>
+		</a>
 <?php
 		if($login)
 		{
@@ -74,11 +84,11 @@ echo<<<END
 	
 				<figure >  
 END;
-					if(!$login == "bad" && !$login == null){
-						echo '<img src="data:image/jpeg;base64,'.base64_encode( $user_img ).'"/>';
+					if($user_img){
+						echo '<img src="data:image/jpeg;base64,'.base64_encode( $user_img ).'">';
 					}
 					else{
-						echo '<img src="../img/login.png"/>';
+						echo '<img src="../img/login.png">';
 					}
 echo<<<END
 					<figcaption>$login</figcaption>
@@ -143,7 +153,7 @@ END;
 ?>		
 	
 <?php
-if(!$login == "bad" && !$login == null)
+if($login)
 {
 echo<<<END
 		<style>

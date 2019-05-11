@@ -1,4 +1,26 @@
-//TODO change the variables name
+<?php
+    //TODO create small user panel,
+    // add feature to read full think
+    
+    session_start();
+
+    require_once "connect.php";
+    $Connect = mysqli_connect($host,$db_user,$db_password,$db_name);
+
+    $QueryResoult = mysqli_query($Connect,
+    "SELECT uzytkownicy.Iduzytkownika,
+     uzytkownicy.nick, 
+     uzytkownicy.user_img,
+      rozkminy.idrozkminy, 
+      rozkminy.temat, 
+      rozkminy.tresc 
+      FROM `rozkminy` 
+      JOIN uzytkownicy
+      ON rozkminy.Iduzytkownika = uzytkownicy.Iduzytkownika
+    ");
+    $NumberOfRows = $QueryResoult->num_rows;
+    //$NumberOfRows = mysqli_num_rows($RowsFromQueryResoult);
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,59 +28,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/thinks.css">
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
     <title>Document</title>
 </head>
 <body>
 <div id="container">
     <div id="content">
+<?php
+        for ($i=1; $i <= $NumberOfRows; $i++) 
+        { 
+            $RowFromQueryResoult = mysqli_fetch_assoc($QueryResoult);
+echo<<<END
+    
         <div class="thinks">
             <div class="user_info">
-                 <img src="../gluten_free.png">
-                 <p>HolyGeek404</p>
+END;
+                if($RowFromQueryResoult["user_img"])
+                {
+                    echo '<img src="data:image/jpeg;base64,'.base64_encode( $RowFromQueryResoult['user_img'] ).'">';
+                }
+                else
+                {
+                    echo '<img src="../img/login.png">';
+                }
+                echo "<p>";
+
+                 echo $RowFromQueryResoult['nick'];
+echo<<<END
+                </p>
             </div>
             <div class="think_container">
                 <div class="think_topic">
-                    <span>Lorem ipsum dolor sit amet, consectetur</span>
+                    <span>
+END;
+                echo $RowFromQueryResoult['temat'];
+
+                    echo'</span>
                 </div>
                 <div class="think_content">
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum, dolor ut ultricies iaculis, mi erat venenatis purus, id congue felis nunc egestas ante. Nulla interdum erat ac quam tristique convallis. Curabitur ac viverra est. Cras feugiat non erat sed tristique. Nullam faucibus, turpis sit amet placerat lobortis, nibh diam tempor leo, eget iaculis felis eros sit amet mauris. Proin fermentum imperdiet dui non imperdiet. Pellentesque dignissim mi nec quam vestibulum eleifend. Phasellus erat nibh, interdum vel risus et, lobortis convallis eros. Morbi mauris est, laoreet quis imperdiet in, sodales et arcu.
+                    <span>';
 
-                    Aenean auctor viverra dui non pulvinar. Ut neque libero, varius ac tincidunt in, scelerisque vitae mauris. Vivamus vitae consequat erat. Donec venenatis libero a magna placerat, in pharetra nisl maximus. Duis ac feugiat nibh, sed tempus tortor. Mauris nec condimentum justo, ullamcorper scelerisque purus. Praesent vel lorem tellus.</span>
+                echo $RowFromQueryResoult['tresc'];
+   
+                echo '</span>
                 </div>
             </div>
-        </div>
-         <div class="thinks">
-            <div class="user_info">
-
-            </div>
-            <div class="think_container">
-                    
-            </div>
-        </div>
-        <div class="thinks">
-                <div class="user_info">
-                     <img src="../img.jpg">
-                     <p>HolyGeek404</p>
-                </div>
-                <div class="think_container">
-                    <div class="think_topic">
-                        <span>Lorem ipsum dolor sit amet, consectetur</span>
-                    </div>
-                    <div class="think_content">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum, dolor ut ultricies iaculis, mi erat venenatis purus, id congue felis nunc egestas ante. Nulla interdum erat ac quam tristique convallis. Curabitur ac viverra est. Cras feugiat non erat sed tristique. Nullam faucibus, turpis sit amet placerat lobortis, nibh diam tempor leo, eget iaculis felis eros sit amet mauris. Proin fermentum imperdiet dui non imperdiet. Pellentesque dignissim mi nec quam vestibulum eleifend. Phasellus erat nibh, interdum vel risus et, lobortis convallis eros. Morbi mauris est, laoreet quis imperdiet in, sodales et arcu.
-    
-                        Aenean auctor viverra dui non pulvinar. Ut neque libero, varius ac tincidunt in, scelerisque vitae mauris. Vivamus vitae consequat erat. Donec venenatis libero a magna placerat, in pharetra nisl maximus. Duis ac feugiat nibh, sed tempus tortor. Mauris nec condimentum justo, ullamcorper scelerisque purus. Praesent vel lorem tellus.</span>
-                    </div>
-                </div>
-            </div>
-             <div class="thinks">
-                <div class="user_info">
-    
-                </div>
-                <div class="think_container">
-                        
-                </div>
-            </div>
+        </div>';
+          }
+?>  
     </div>
 </div>
 </body>

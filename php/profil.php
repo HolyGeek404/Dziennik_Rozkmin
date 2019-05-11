@@ -1,5 +1,7 @@
-//TODO change the variables name
 <?php
+    //TODO change the variables name
+
+
     session_start();
     require_once "connect.php"; 
 

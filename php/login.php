@@ -1,12 +1,11 @@
 <?php //TODO change the variables name
     session_start();
+    //TODO OGARNĄC OT
     require_once "connect.php";
+    $connect = mysqli_connect($host,$db_user,$db_password,$db_name);
     
     $login = $_POST['login'];
     $pass =  $_POST['pass'];
-    
-    $connect = mysqli_connect($host,$db_user,$db_password,$db_name);
-
     $result = mysqli_query($connect,"SELECT * FROM uzytkownicy WHERE nick='$login'");
     $row = mysqli_fetch_assoc($result);
 
@@ -18,19 +17,19 @@
             $_SESSION['user_id'] = $row['Iduzytkownika'];
             $_SESSION['user_img'] = $row['user_img'];
             $_SESSION['user_login'] = $row['nick'];
-            $_SESSION['isAllGood'] = True;
+            $_SESSION['isAllGood'] = "good";
 
             header("Location: index.php");
         }
         else
         {
-            $_SESSION['isAllGood'] = False;
+            $_SESSION['isAllGood'] = "bad";
             header("Location: index.php");
         }
     }
     else
     {
-        $_SESSION['isAllGood'] = False;
+        $_SESSION['isAllGood'] = "bad";
         header("Location: index.php");
     }
 ?>
