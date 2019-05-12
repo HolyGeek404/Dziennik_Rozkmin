@@ -17,19 +17,19 @@
             $_SESSION['user_id'] = $row['Iduzytkownika'];
             $_SESSION['user_img'] = $row['user_img'];
             $_SESSION['user_login'] = $row['nick'];
-            $_SESSION['isAllGood'] = "good";
+            $_SESSION['incorrectLoginOrRregistration'] = FALSE;
 
             header("Location: index.php");
         }
         else
         {
-            $_SESSION['isAllGood'] = "bad";
+            $_SESSION['incorrectLoginOrRregistration'] = TRUE;
             header("Location: index.php");
         }
     }
     else
     {
-        $_SESSION['isAllGood'] = "bad";
+        $_SESSION['incorrectLoginOrRregistration'] = TRUE;
         header("Location: index.php");
     }
 ?>

@@ -46,20 +46,18 @@
 		},5000);
 		// FUNKCJA KTÓRA TWORZY DIVA Z WIADOMOŚCIĄ O BŁĘDNYM 
 		// ZALOGOWANIU / REJESTRACJI
-	}
+	}     
 	</script>
 </head>
 <body>
 <?php
-//!$_SESSION['isAllGood'] == "" && $_SESSION['isAllGood'] == NULL
-
-if($_SESSION['isAllGood'] != "" && $_SESSION['isAllGood'] == "bad")
+if($_SESSION['incorrectLoginOrRregistration'])
 {
 	echo "<script>error_msg();</script>";
 }
 ?>
 
-<div id="content">
+<div id="content">	
 	<header>
 		<h2>ROZKMINY</h2>
 	</header>
@@ -207,7 +205,7 @@ echo<<<END
 					<input type="submit" >				
 				</form>					
 			</div>
-		</div>
+		</div><script>CutThinkContent();</script> 
 END;
 }
 ?>	

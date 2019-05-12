@@ -1,9 +1,7 @@
 <?php
     //TODO create small user panel,
     // add feature to read full think
-    
     session_start();
-
     require_once "connect.php";
     $Connect = mysqli_connect($host,$db_user,$db_password,$db_name);
 
@@ -29,7 +27,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/thinks.css">
     <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
+    <script>
+      function CutThinkContent()
+ 	{// TODO CHANGE VARABLES NAME !!!!
+        var ThinkContentClassArrary = document.getElementsByClassName("think_content");
+        for (let i = 1; i <= ThinkContentClassArrary.length; i++)
+        {        
+            var ContentOfThinkContentClass = ThinkContentClassArrary[i-1].textContent;
+            if (ContentOfThinkContentClass.length > 416)
+            {
+                ThinkContentClassArrary[i-1].innerHTML = "";
+                var CorrectContentSizeOfThinkContentClass = ContentOfThinkContentClass.substring(0,420);
+                CorrectContentSizeOfThinkContentClass += "...";
+                var x = document.createElement('div');
+                var TextNode = document.createTextNode(CorrectContentSizeOfThinkContentClass);
+                x.id = "test";
+                x.appendChild(TextNode);
+               
+                ThinkContentClassArrary[i-1].appendChild(x);
+            }
+        }  
+    }  
+    </script>
+    <style>
+        #test
+        {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 <div id="container">
@@ -73,9 +102,11 @@ END;
                 echo '</span>
                 </div>
             </div>
-        </div>';
+        </div>
+         ';
           }
 ?>  
+<script>CutThinkContent();</script>
     </div>
 </div>
 </body>
