@@ -19,7 +19,7 @@
 echo<<<END
 	<label>
 		<form action="insert.php" method="post">			
-			<input type="text" name="temat" placeholder="Temat dla rozkminy" value="$temat">
+			<input type="text" name="temat" placeholder="Temat rozkminy" value="$temat">
 			<textarea wrap="easy" name="tresc" placeholder="Napisz, o czym myślisz . . .">$tresc</textarea>
 			<input type="submit" value="Dodaj rozkmine">
 		</form>

@@ -21,49 +21,47 @@
 ?>
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/thinks.css">
-    <link rel="shortcut icon" type="image/png" href="../img/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="../img/favicon.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
     <script>
-      function CutThinkContent()
- 	{// TODO CHANGE VARABLES NAME !!!!
+    function CutThinkContent() { // TODO CHANGE VARABLES NAME !!!!
         var ThinkContentClassArrary = document.getElementsByClassName("think_content");
-        for (let i = 1; i <= ThinkContentClassArrary.length; i++)
-        {        
-            var ContentOfThinkContentClass = ThinkContentClassArrary[i-1].textContent;
-            if (ContentOfThinkContentClass.length > 416)
-            {
-                ThinkContentClassArrary[i-1].innerHTML = "";
-                var CorrectContentSizeOfThinkContentClass = ContentOfThinkContentClass.substring(0,420);
+        for (let i = 1; i <= ThinkContentClassArrary.length; i++) {
+            var ContentOfThinkContentClass = ThinkContentClassArrary[i - 1].textContent;
+            if (ContentOfThinkContentClass.length > 416) {
+                ThinkContentClassArrary[i - 1].innerHTML = "";
+                var CorrectContentSizeOfThinkContentClass = ContentOfThinkContentClass.substring(0, 421);
                 CorrectContentSizeOfThinkContentClass += "...";
                 var x = document.createElement('div');
                 var TextNode = document.createTextNode(CorrectContentSizeOfThinkContentClass);
                 x.id = "test";
                 x.appendChild(TextNode);
-               
-                ThinkContentClassArrary[i-1].appendChild(x);
+
+                ThinkContentClassArrary[i - 1].appendChild(x);
             }
-        }  
-    }  
+        }
+    }
     </script>
     <style>
-        #test
-        {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-        }
+    #test {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
     </style>
 </head>
+
 <body>
-<div id="container">
-    <div id="content">
-<?php
+    <div id="container">
+        <div id="content">
+            <?php
         for ($i=1; $i <= $NumberOfRows; $i++) 
         { 
             $RowFromQueryResoult = mysqli_fetch_assoc($QueryResoult);
@@ -80,7 +78,7 @@ END;
                 {
                     echo '<img src="../img/login.png">';
                 }
-                echo "<p>";
+           echo "<p>";
 
                  echo $RowFromQueryResoult['nick'];
 echo<<<END
@@ -105,9 +103,12 @@ END;
         </div>
          ';
           }
-?>  
-<script>CutThinkContent();</script>
+?>
+            <script>
+            CutThinkContent();
+            </script>
+        </div>
     </div>
-</div>
 </body>
+
 </html>

@@ -10,7 +10,7 @@
     $row = mysqli_fetch_assoc($result);
 
     if($row != NULL)
-    {
+    { 
         $user_pass = $row['haslo'];
         if(password_verify($pass,$user_pass))
         {
