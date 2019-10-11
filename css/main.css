@@ -226,7 +226,7 @@ article
 }
 
 .type_option:hover{
-	height: 350px;
+	height: 215px;
 }
 .type_option:hover #login
 {
@@ -242,7 +242,7 @@ article
 #login
 {
 	width: 290px;
-	height: 200px;
+	height: 60px;
 	background-color: #06434f;
 	margin: auto;
 	top: -1000;
@@ -293,7 +293,7 @@ article
 .user_options
 {
 	width: 140px;
-	height: 100px;
+	height: 50px;
 	float: left;
 	margin: -5px auto;
 	font-size: 22px;

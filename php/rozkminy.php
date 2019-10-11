@@ -5,7 +5,7 @@
     require_once "connect.php";
     $Connect = mysqli_connect($host,$db_user,$db_password,$db_name);
 
-    $QueryResoult = mysqli_query($Connect,
+    $QueryResult = mysqli_query($Connect,
     "SELECT uzytkownicy.Iduzytkownika,
      uzytkownicy.nick, 
      uzytkownicy.user_img,
@@ -16,12 +16,10 @@
       JOIN uzytkownicy
       ON rozkminy.Iduzytkownika = uzytkownicy.Iduzytkownika
     ");
-    $NumberOfRows = $QueryResoult->num_rows;
-    //$NumberOfRows = mysqli_num_rows($RowsFromQueryResoult);
+    $NumberOfRows = $QueryResult->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,16 +29,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
     <script>
-    function CutThinkContent() { // TODO CHANGE VARABLES NAME !!!!
+    function CutThinkContent() 
+    {
         var ThinkContentClassArrary = document.getElementsByClassName("think_content");
+
         for (let i = 1; i <= ThinkContentClassArrary.length; i++) {
+           
             var ContentOfThinkContentClass = ThinkContentClassArrary[i - 1].textContent;
             if (ContentOfThinkContentClass.length > 416) {
+               
                 ThinkContentClassArrary[i - 1].innerHTML = "";
-                var CorrectContentSizeOfThinkContentClass = ContentOfThinkContentClass.substring(0, 421);
+                
+                var CorrectContentSizeOfThinkContentClass = ContentOfThinkContentClass.substring(0, 416); 
                 CorrectContentSizeOfThinkContentClass += "...";
+              
                 var x = document.createElement('div');
                 var TextNode = document.createTextNode(CorrectContentSizeOfThinkContentClass);
+              
                 x.id = "test";
                 x.appendChild(TextNode);
 
@@ -50,54 +55,58 @@
     }
     </script>
     <style>
-    #test {
+    #test 
+    {
         display: flex;
         align-items: center;
         padding: 10px;
     }
     </style>
 </head>
-
 <body>
     <div id="container">
+        <div id="user_side_bar">
+        
+        </div>
         <div id="content">
-            <?php
+<?php
         for ($i=1; $i <= $NumberOfRows; $i++) 
         { 
-            $RowFromQueryResoult = mysqli_fetch_assoc($QueryResoult);
+            $RowFromQueryResult = mysqli_fetch_assoc($QueryResult);
 echo<<<END
     
         <div class="thinks">
             <div class="user_info">
 END;
-                if($RowFromQueryResoult["user_img"])
+                if($RowFromQueryResult["user_img"])
                 {
-                    echo '<img src="data:image/jpeg;base64,'.base64_encode( $RowFromQueryResoult['user_img'] ).'">';
+                    echo '<img src="data:image/jpeg;base64,'.base64_encode( $RowFromQueryResult['user_img'] ).'">';
                 }
                 else
                 {
                     echo '<img src="../img/login.png">';
                 }
-           echo "<p>";
+echo            "<p>";
 
-                 echo $RowFromQueryResoult['nick'];
+echo                $RowFromQueryResult['nick'];
 echo<<<END
                 </p>
             </div>
             <div class="think_container">
                 <div class="think_topic">
-                    <span>
 END;
-                echo $RowFromQueryResoult['temat'];
-
-                    echo'</span>
+echo '                 <a href="tresc_rozkminy.php?Idrozkminy=';
+echo                    $RowFromQueryResult['idrozkminy'];
+echo '">
+                    <span>';
+echo                     $RowFromQueryResult['temat'];
+echo'               </span>
+                        </a>
                 </div>
                 <div class="think_content">
-                    <span>';
-
-                echo $RowFromQueryResoult['tresc'];
-   
-                echo '</span>
+                        <span>';
+echo                      $RowFromQueryResult['tresc'];
+echo '                 </span>         
                 </div>
             </div>
         </div>
@@ -110,5 +119,4 @@ END;
         </div>
     </div>
 </body>
-
 </html>

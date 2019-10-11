@@ -6,14 +6,13 @@
 
 	error_reporting(0);
 	session_start();
-	echo strlen("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor mauris et nunc sollicitudin, ut iaculis lectus venenatis. Etiam dui augue, semper sed ante ac, interdum vulputate ante. Duis in hendrerit massa. Maecenas congue magna sit amet mi interdum aliquet. Nullam sit amet felis a turpis interdum hendrerit sit amet in purus. Nulla est leo, egestas nec tempus eget, dignissim at est. Nulla vitae finibus felis. Donec semper, lorem consequat vulputate viverra, arcu magna ullamcorper eros, id scelerisque");
+
 	$login = $_SESSION['user_login'];
 	$user_img = $_SESSION['user_img'];
 	// echo date("d/m/o G:i");
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Rozkmina.pl</title>
     <meta charset="utf-8">
@@ -26,7 +25,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script>
-    function error_msg() {
+	function error_msg() 
+	{
         var error_div = document.createElement('div');
         $(error_div).attr('id', 'error_msg');
         $('body').prepend(error_div);
@@ -46,19 +46,17 @@
             $(error_div).remove();
         }, 5000);
         // FUNKCJA KTÓRA TWORZY DIVA Z WIADOMOŚCIĄ O BŁĘDNYM 
-        // ZALOGOWANIU / REJESTRACJI
+        // ZALOGOWANIU / REJESTRACJI 
     }
     </script>
 </head>
-
 <body>
-    <?php
+<?php
 if($_SESSION['incorrectLoginOrRregistration'])
 {
 	echo "<script>error_msg();</script>";
 }
 ?>
-
     <div id="content">
         <header>
             <h2>ROZKMINA.PL</h2>
@@ -94,26 +92,18 @@ echo<<<END
 					<figcaption>$login</figcaption>
 				</figure>
 				<div id="login" >
-					<div style="width:280px; height:180px; margin:auto; padding-top:10px;">
+					<div style="width:280px; height:60px; margin:auto; padding-top:10px;">
 						<div class="user_options">						
-							<a href="profil.php">Mój profil</a>
+							<a href="user_profile.php">Mój profil</a>
 						</div>
-						<div class="user_options">						
-							<a href="logout.php">Ulubione rozkminy</a>	
-						</div>
-									<div style="clear: both;"></div>
 						<div class="user_options">
 							<a href="logout.php">Wyloguj się </a>							
-						</div>
-						<div class="user_options">						
-							<a href="profil.php">Moje rozkminy</a>
 						</div>
 					</div>
 				</div>	
 			</div>			
 END;
 		}									
-
 		else
 		{
 echo<<<END
@@ -129,6 +119,9 @@ echo<<<END
 				{
 					width: 290px;
 					height: 200px;
+				}
+				.type_option:hover{
+					height: 350px;
 				}
 			</style>
 
@@ -152,7 +145,7 @@ END;
 }
 ?>
 
-            <?php
+ <?php
 if($login)
 {
 echo<<<END
@@ -213,5 +206,4 @@ END;
 ?>
         </div>
 </body>
-
 </html>
