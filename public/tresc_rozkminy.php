@@ -1,13 +1,13 @@
 <?php
     session_start();
     require_once "connect.php";
-    $polaczenie = mysqli_connect( $host, $db_user, $db_password, $db_name );
+    $conn = connectToDatabase();
     
-    if ( $polaczenie->connect_errno != 0 ) {
-        echo "Coś nie pykło" . $polaczenie->connect_errno;
+    if ( $conn->connect_errno != 0 ) {
+        echo "Coś nie pykło" . $conn->connect_errno;
     } else {
         $Idrozkminy = $_GET[ "Idrozkminy" ];
-        $rezulata = mysqli_query( $polaczenie,
+        $rezulata = mysqli_query( $conn,
             "SELECT temat, tresc
 			FROM rozkminy 
 			WHERE idrozkminy = '$Idrozkminy'" );
@@ -19,7 +19,7 @@
             
             $rezulata->free_result();
         }
-        $polaczenie->close();
+        closeConnection( $conn );
     }
 ?>
 <!DOCTYPE html>

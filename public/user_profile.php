@@ -24,6 +24,8 @@
     
     $QueryResult = executeQuery( $conn, $query );
     $NumberOfRows = $QueryResult->num_rows;
+    closeConnection( $conn );
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">
