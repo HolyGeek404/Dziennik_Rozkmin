@@ -9,7 +9,6 @@
     
     $login = $_SESSION[ 'user_login' ];
     $user_img = $_SESSION[ 'user_img' ];
-    // echo date("d/m/o G:i");
 ?>
 <!DOCTYPE html>
 <html>
