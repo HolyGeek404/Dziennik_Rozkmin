@@ -11,7 +11,6 @@
         if ( $conn->connect_error ) {
             die( "Connection failed: " . $conn->connect_error );
         }
-        
         return $conn;
     }
     
@@ -22,13 +21,8 @@
         if ( !$result ) {
             die( "Query failed: " . mysqli_error( $conn ) );
         }
+        mysqli_close( $conn );
         
         return $result;
     }
     
-    function closeConnection( $conn )
-    {
-        mysqli_close( $conn );
-    }
-
-?>

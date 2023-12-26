@@ -1,9 +1,4 @@
 <?php
-    
-    // TODO create another page for registration,
-    // change the variables name,
-    // create user page and options
-    
     error_reporting( 0 );
     session_start();
     
@@ -15,17 +10,24 @@
 <head>
 
     <title>Rozkmina.pl</title>
-    <?php include 'head.php' ?>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/fontello/fontello.css">
+    <link rel="shortcut icon" type="image/png" href="./img/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Madurai:600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <title>Document</title>
 </head>
 <body>
-<?php
-    if ( $_SESSION[ 'incorrectLoginOrRregistration' ] ) {
-        echo "<script>error_msg();</script>";
-    }
-?>
+
 <div id="content">
     <header>
-        <h2>ROZKMINA.PL</h2>
+        <h2><a href="/">ROZKMINA.PL</a></h2>
     </header>
     <section>
         <h1>w tym miejscu możesz podzielić się swoimi przemyśleniami</h1>
@@ -61,7 +63,7 @@ END;
 							<a href="user_profile.php">Mój profil</a>
 						</div>
 						<div class="user_options">
-							<a href="logout.php">Wyloguj się </a>
+							<a href="php/logout.php">Wyloguj się </a>
 						</div>
 					</div>
 				</div>
@@ -87,21 +89,34 @@ END;
 				}
 			</style>
 
-			<div id="login" >
-				<form action="login.php" method="post">
-					<fieldset style="width:300px;">
-						<span>Login</span>
-						<input type="text" name="login">
-					</fieldset>
-				
-					<fieldset style="width:300px;">
-						<span>Hasło</span>
-						<input type="password" name="pass">
-					</fieldset>
-
-					<input type="submit" name=""  style="margin-top:30px;">
-				</form>
-			</div>
+            <div id="login">
+                <form action="php/login.php" method="post">
+                    <fieldset style="width:300px;">
+                        <span>Login</span>
+                        <input type="text" name="login">
+                    </fieldset>
+            
+                    <fieldset style="width:300px;">
+                        <span>Hasło</span>
+                        <input type="password" name="pass">
+                    </fieldset>
+                    <input type="submit" value="Login" style="margin-top:30px;">
+                </form>
+                <button id="forgotPasswordBtn">Forgot Password?</button>
+            </div>
+                <div id="overlay"></div>
+            
+            <div id="forgotPasswordPopup">
+                <h2>Przypomnienie hasła</h2>
+                <p>Wprowadź swój adres email w celu otrzymania nowego hasła</p>
+                <form action="php/forgot_password.php" method="post">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required>
+                    <br>
+                    <input type="submit" value="Wyślij">
+                </form>
+                <button id="closePopupBtn">zamknij</button>
+            </div>
 		</div>
 END;
             }
@@ -128,41 +143,26 @@ END;
 END;
             } else {
                 echo <<<END
-		<div class="type_option">
+		<div class="type_options">
 
-			<figure >
-				<img src="img/add_user.png">
-				<figcaption>Rejestracja</figcaption>
-			</figure>
-
-			<div id="rejestracja">
-				<form method="post" action="registry.php">
-					<fieldset>
-						<span>Login</span>
-						<input type="text" name="login" placeholder="3 do 15 znaków">
-					</fieldset>
-
-					<fieldset>
-						<span>E-mail</span>
-						<input type="email" name="email">
-					</fieldset>
-				
-					<fieldset>
-						<span>Hasło</span>
-						<input type="password" name="pass" placeholder="Minimum 6 znaków">
-					</fieldset>
-
-					<fieldset>
-						<span>Powtórz hasło</span>
-						<input type="password" name="pass_rep">
-					</fieldset>
-					<input type="submit" >
-				</form>
+			<a href="/registration.php">
+                <figure>
+                    <img src="img/add_user.png">
+                    <figcaption>Rejestracja</figcaption>
+                </figure>
+            </a>
 			</div>
-		</div><script>CutThinkContent();</script>
 END;
             }
         ?>
     </div>
+    <script src="js/popup.js"></script>
+    <?php
+        
+        if ( isset( $_SESSION[ 'Error' ] ) ) {
+            echo "<script>displayErrorMessage('{$_SESSION['Error']}');</script>";
+            unset( $_SESSION[ 'Error' ] );
+        }
+    ?>
 </body>
 </html>

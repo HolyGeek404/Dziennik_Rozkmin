@@ -5,7 +5,7 @@
 body {
     background: url("../backgrounds/add_thing_bg.svg");
     background-size: 100%;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
     margin: 0px;
 }
@@ -17,11 +17,44 @@ body {
     align-items: center;
 }
 
+#error_msg {
+    position: fixed;
+    width: 340px;
+    color: #e8ebef;
+    background-color: #0089a4;
+    border: 5px solid #1f4a8e;
+    text-align: center;
+    right: -350px;
+    font-weight: bold;
+}
+
+#error_msg span {
+    padding: 7px;
+    display: block;
+    text-transform: uppercase;
+}
+
+button {
+    width: 170px;
+    height: 40px;
+    background-color: #008aa4;
+    color: #022f38;
+    outline: none;
+    border: none;
+    font-size: 17px;
+    text-align: center;
+    margin: 20px auto;
+    cursor: pointer;
+    border: 3px solid #06434f;
+    display: block;
+    border-radius: 5px;
+}
+
 #content {
     width: 800px;
     margin: 30px auto;
-    background-color: #4286f4;
-    box-shadow: 0px 0px 9px 0px rgba(66, 134, 244, 0.75);
+    /*background-color: #4286f4;*/
+    /*box-shadow: 0px 0px 9px 0px rgba(66, 134, 244, 0.75);*/
 }
 
 .thinks {

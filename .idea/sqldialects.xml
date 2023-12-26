@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/public/php/activation_account.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/public/php/change_user_data.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/public/php/download_user_profile.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/public/php/forgot_password.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/public/php/login.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/public/php/registry.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/public/php/thinks_operation.php" dialect="GenericSQL" />
+  </component>
+</project>

@@ -20,6 +20,23 @@ form {
     margin: auto
 }
 
+#error_msg {
+    position: fixed;
+    width: 340px;
+    color: #e8ebef;
+    background-color: #0089a4;
+    border: 5px solid #1f4a8e;
+    text-align: center;
+    right: -350px;
+    font-weight: bold;
+}
+
+#error_msg span {
+    padding: 7px;
+    display: block;
+    text-transform: uppercase;
+}
+
 input[type=text] {
     width: 610px;
     height: 20px;
