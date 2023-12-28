@@ -1,0 +1,150 @@
+*
+{
+	font-family: 'Paytone One', sans-serif;
+}
+
+body
+{
+	background: url("../backgrounds/add_thing_bg.svg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	margin: 0px;
+}
+
+#container
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+} 
+
+#content
+{
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    background-color: #0089a4;
+}
+#user
+{
+    width: 200px;
+    margin: 15px;
+    float: left;
+}
+#user img
+{
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    object-fit: contain;  
+    /* background-color: #06434f;   */
+}
+
+#user_info
+{
+    font-weight: bold;
+    color: #06434f; 
+}
+
+#about_user
+{
+    width: 700px;
+    height: 440px;
+    float: left;
+    margin: 25px 0px 0px 40px;
+}
+
+#about_user_content
+{
+    width: 100%;
+    height: 410px;
+    background-color: #06434f;
+    margin-top: 38px;
+}
+
+#about_user_description
+{
+    width: 665px;
+    height: 110px;
+    color: #0089a4;
+    font-weight: bold;
+    text-align: justify;
+    margin: auto;   
+    padding: 20px 0px 5px 0px;
+    font-size: 15px;
+    border-bottom: 2px solid #0089a4;
+}
+
+#about_user_thinks
+{
+    width: 665px;
+    height: 250px;
+    margin: 10px auto 0px auto;
+}
+#about_user_thinks span
+{
+    color: #0089a4;
+    font-size: 25px;
+    word-spacing: 5px;
+    font-weight: bold;
+}
+
+.think
+{
+    width: 660px;
+    height: 200px;
+    margin-top: 10px;
+    /* background-color: azure; */
+}
+.think ul 
+{
+    font-size: 18px;
+    color: #0089a4;
+    font-weight: bold;
+}
+.user_profile_info
+{
+    width: 130px;
+    text-align: center;
+    padding: 10px;
+    float: left;
+    color: #06434f;
+    border-radius: 10px 10px 0px 0px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color, 0.9s;
+    z-index: 2;
+}
+.user_profile_info::before
+{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    background-color: #06434f;
+    width: 0%;
+    height: 0%;
+    transition-property: width,height,left;
+    transition-duration: 0.8s;
+    border-radius: 40% 40% 0px 0px;
+    z-index: -1;
+}
+.user_profile_info:hover::before
+{
+    width: 110%;
+    height: 200%;
+    left: -5%;
+}
+.user_profile_info:hover
+{
+    color: #0089a4;
+}
+#current_user_profile_info
+{
+    background-color: #06434f;
+    color: #0089a4;
+}

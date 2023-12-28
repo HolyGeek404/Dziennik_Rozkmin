@@ -1,0 +1,69 @@
+*{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+body
+{
+	background: url("../backgrounds/add_thing_bg.svg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin: 0px;
+}
+
+input[type=text]
+{
+	width: 610px;
+	height: 20px;
+	padding: 10px;
+	border-radius: 10px;
+	color: #022f38;
+	margin: 40px auto 20px auto;
+	outline: none;
+	border: none;
+	font-size: 17px;
+	display: block;	
+	background-color: #008aa4;
+	border: 3px solid #06434f;
+}
+::placeholder
+{
+	color: #022f38;
+	font-style: italic;
+	word-spacing: 2px;
+}
+
+textarea
+{
+	display: block;
+	width: 950px;
+	height: 300px;
+	border-radius: 5px;
+	resize: none;
+	margin: auto;
+	background-color: #008aa4;
+	color: #022f38;
+	outline: none;
+	border: none;
+	padding: 13px;
+	font-size: 23px;
+	word-spacing: 2px;
+	text-align: justify;
+	border: 3px solid #06434f;
+}
+
+input[type=submit]
+{
+	width: 170px;
+	height: 40px;
+	background-color: #008aa4;
+	color: #022f38;
+	outline: none;
+	border: none;
+	font-size: 17px;
+	text-align: center;
+	margin: 20px auto;
+	cursor: pointer;
+	border: 3px solid #06434f;
+	display: block;
+	border-radius: 5px;
+}
