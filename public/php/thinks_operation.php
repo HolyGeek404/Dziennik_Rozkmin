@@ -19,87 +19,103 @@
             }
         }
     }
-    
-    function addThink()
+
+    function addThink(): void
     {
-        
-        $temat = isset( $_POST[ 'temat' ] ) ? htmlspecialchars( $_POST[ 'temat' ] ) : '';
-        $tresc = isset( $_POST[ 'tresc' ] ) ? htmlspecialchars( $_POST[ 'tresc' ] ) : '';
-        $id = isset( $_SESSION[ 'user_id' ] ) ? $_SESSION[ 'user_id' ] : '';
-        $query = "SELECT * FROM uzytkownicy WHERE Iduzytkownika='$id'";
-        $QueryResult = executeQuery( connectToDatabase(), $query );
-        $row = mysqli_fetch_assoc( $QueryResult );
-        if ( $row[ 'aktywowany' ] == 1 ) {
-            if ( strlen( $temat ) && strlen( $tresc ) ) {
-                
-                if ( !connectToDatabase() ) {
-                    echo mysqli_connect_error();
-                } else {
-                    $_SESSION[ 'Error' ] = 'Nowa rozkmina została dodana.';
-                    mysqli_query( connectToDatabase(), "INSERT INTO rozkminy (temat, tresc, Iduzytkownika) VALUES ('$temat','$tresc','$id')" );
-                    header( "Location:../rozkminy.php" );
-                }
+        $temat = isset($_POST['temat']) ? htmlspecialchars($_POST['temat']) : '';
+        $tresc = isset($_POST['tresc']) ? htmlspecialchars($_POST['tresc']) : '';
+        $id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '';
+        $conn = ConnectToDatabase();
+
+
+        $activationCheckQuery = "SELECT * FROM uzytkownicy WHERE Iduzytkownika=?";
+        $activationCheckStmt = $conn->prepare($activationCheckQuery);
+        $activationCheckStmt->bind_param("i", $id);
+        $activationCheckStmt->execute();
+        $activationResult = $activationCheckStmt->get_result();
+        $activationCheckStmt->close();
+
+        $row = $activationResult->fetch_assoc();
+        if ($row['aktywowany'] == 1) {
+
+            if (strlen($temat) && strlen($tresc)) {
+                $addThinkQuery = "INSERT INTO rozkminy (temat, tresc, Iduzytkownika) VALUES (?, ?, ?)";
+                $addThinkStmt = $conn->prepare($addThinkQuery);
+                $addThinkStmt->bind_param("ssi", $temat, $tresc, $id);
+                $addThinkStmt->execute();
+                $addThinkStmt->close();
+
+                $_SESSION['Error'] = 'Nowa rozkmina została dodana.';
+                header("Location:../rozkminy.php");
             } else {
-                $_SESSION[ 'Error' ] = 'Nie pozostawiaj pustych pól.';
-                $_SESSION[ 'temat' ] = $temat;
-                $_SESSION[ 'tresc' ] = $tresc;
-                
-                header( "Location:../nowa_rozkmina.php" );
+                $_SESSION['Error'] = 'Nie pozostawiaj pustych pól.';
+                $_SESSION['temat'] = $temat;
+                $_SESSION['tresc'] = $tresc;
+                header("Location:../nowa_rozkmina.php");
             }
         } else {
-            $_SESSION[ 'Error' ] = 'Aktywuj konto aby dodać rozkminę.';
-            header( "Location: /nowa_rozkmina.php" );
+            $_SESSION['Error'] = 'Aktywuj konto aby dodać rozkminę.';
+            header("Location: /nowa_rozkmina.php");
             exit();
         }
     }
-    
-    function updateThink()
+
+
+    function updateThink(): void
     {
-        $tresc = isset( $_POST[ 'tresc' ] ) ? htmlspecialchars( $_POST[ 'tresc' ] ) : '';
-        $temat = isset( $_POST[ 'temat' ] ) ? htmlspecialchars( $_POST[ 'temat' ] ) : '';
-        $id_rozkminy = isset( $_POST[ 'entryId' ] ) ? $_POST[ 'entryId' ] : '';
-        
-        if ( isset( $tresc ) && isset( $temat ) && isset( $id_rozkminy ) &&
-            strlen( $tresc ) && strlen( $temat ) && strlen( $id_rozkminy ) ) {
+        $tresc = isset($_POST['tresc']) ? htmlspecialchars($_POST['tresc']) : '';
+        $temat = isset($_POST['temat']) ? htmlspecialchars($_POST['temat']) : '';
+        $id_rozkminy = isset($_POST['entryId']) ? $_POST['entryId'] : '';
+
+        if (isset($tresc, $temat, $id_rozkminy) &&
+            strlen($tresc) && strlen($temat) && strlen($id_rozkminy)) {
+
             $conn = connectToDatabase();
-            if ( !$conn ) {
+
+            if (!$conn) {
                 echo mysqli_connect_error();
             } else {
-                
-                // Corrected SQL syntax
-                $query = "UPDATE rozkminy SET temat='$temat', tresc='$tresc' WHERE idrozkminy='$id_rozkminy'";
-                
-                // Execute the query
-                mysqli_query( $conn, $query );
-                $_SESSION[ 'Error' ] = 'Rozkmina zaktualizowana.';
-                
-                header( "Location:../tresc_rozkminy.php?Idrozkminy=$id_rozkminy" );
+                // Corrected SQL syntax and use of bind_param
+                $query = "UPDATE rozkminy SET temat=?, tresc=? WHERE idrozkminy=?";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("ssi", $temat, $tresc, $id_rozkminy);
+                $stmt->execute();
+                $stmt->close();
+
+                $_SESSION['Error'] = 'Rozkmina zaktualizowana.';
+                header("Location:../tresc_rozkminy.php?Idrozkminy=$id_rozkminy");
             }
         } else {
-            $_SESSION[ 'Error' ] = 'Nie pozostawiaj pustych pól.';
-            
-            $_SESSION[ 'tresc' ] = $tresc;
-            $_SESSION[ 'temat' ] = $temat;
-            header( "Location:../tresc_rozkminy.php?Idrozkminy=$id_rozkminy" );
+            $_SESSION['Error'] = 'Nie pozostawiaj pustych pól.';
+            $_SESSION['tresc'] = $tresc;
+            $_SESSION['temat'] = $temat;
+            header("Location:../tresc_rozkminy.php?Idrozkminy=$id_rozkminy");
         }
     }
-    
-    function deleteThink()
+
+
+    function deleteThink(): void
     {
-        $idrozkminy = isset( $_POST[ 'idrozkminy' ] ) ? htmlspecialchars( $_POST[ 'idrozkminy' ] ) : '';
-        
+        $idrozkminy = isset($_POST['idrozkminy']) ? htmlspecialchars($_POST['idrozkminy']) : '';
+
         $conn = connectToDatabase();
-        if ( !$conn ) {
+        if (!$conn) {
             echo mysqli_connect_error();
         } else {
-            mysqli_query( $conn, "DELETE FROM rozkminy WHERE idrozkminy = '$idrozkminy'" );
-            $_SESSION[ 'Error' ] = 'Rozkmina usunieta.';
-            
-            header( "Location:../rozkminy.php" );
+
+            $query = "DELETE FROM rozkminy WHERE idrozkminy = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $idrozkminy);
+            $stmt->execute();
+            $stmt->close();
+
+            $_SESSION['Error'] = 'Rozkmina usunięta.';
+            header("Location:../rozkminy.php");
         }
     }
+
     
-    function viewThink()
+    function viewThink(): array
     {
         $result = [ 'temat' => '', 'tresc' => '' ];
         
@@ -124,7 +140,7 @@
         return $result;
     }
     
-    function checkOwnerThink( $id_rozkminy )
+    function checkOwnerThink( $id_rozkminy ): void
     {
         if ( isset( $_SESSION[ 'user_id' ] ) ) {
             $query = "SELECT Iduzytkownika FROM rozkminy WHERE idrozkminy = '$id_rozkminy'";
@@ -145,7 +161,7 @@
         }
     }
     
-    function viewThinks()
+    function viewThinks(): array
     {
         $result = [];
         
