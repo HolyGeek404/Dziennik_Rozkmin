@@ -115,7 +115,7 @@
     }
 
     
-    function viewThink()
+    function viewThink(): array
     {
         $result = [ 'temat' => '', 'tresc' => '' ];
         
@@ -140,7 +140,7 @@
         return $result;
     }
     
-    function checkOwnerThink( $id_rozkminy )
+    function checkOwnerThink( $id_rozkminy ): void
     {
         if ( isset( $_SESSION[ 'user_id' ] ) ) {
             $query = "SELECT Iduzytkownika FROM rozkminy WHERE idrozkminy = '$id_rozkminy'";
@@ -161,7 +161,7 @@
         }
     }
     
-    function viewThinks()
+    function viewThinks(): array
     {
         $result = [];
         
