@@ -18,7 +18,6 @@
     if ($row != NULL) {
         $user_pass = $row['haslo'];
 
-        // Używanie funkcji password_verify do porównywania hasła
         if (password_verify($pass, $user_pass)) {
             $_SESSION['user_id'] = $row['Iduzytkownika'];
             $_SESSION['user_img'] = $row['user_img'];

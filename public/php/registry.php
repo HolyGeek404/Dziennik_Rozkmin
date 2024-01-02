@@ -3,7 +3,6 @@
 
     require_once('connect.php');
 
-    // Ustawienia połączenia z bazą danych
     $conn = connectToDatabase();
 
     $_SESSION['gites'] = true;
@@ -70,7 +69,7 @@
         exit();
     }
 
-    function generateActivationCode()
+    function generateActivationCode(): string
     {
         return bin2hex(random_bytes(16));
     }

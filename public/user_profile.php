@@ -9,7 +9,7 @@
     
     if ( isset( $_POST[ 'sendmail' ] ) ) {
         $email = filter_input( INPUT_POST, 'email', FILTER_VALIDATE_EMAIL );
-        
+
         if ( empty( $email ) ) {
             $_SESSION[ 'email' ] = $_POST[ 'email' ];
             header( 'Location: index.php' );
@@ -39,7 +39,7 @@
 
 </head>
 <body>
-<a href="/">
+<a href="index.php">
     <button>Powrót</button>
 </a>
 <div>
@@ -161,6 +161,12 @@
         </div>
     </div>
 </div>
+<style>
+    #editAboutMeBtn{
+        width: 250px;
+        font-weight: bold;
+    }
+</style>
 <script src="js/popup.js"></script>
 <?php
     
