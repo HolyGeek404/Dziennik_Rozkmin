@@ -8,7 +8,7 @@
 
     RewriteRule ^index\.php$ - [L]
 
-    RewriteCond %{REQUEST_URI} ^/images/ [OR]
+    RewriteCond %{REQUEST_URI} ^/img/ [OR]
     RewriteCond %{REQUEST_URI} ^/css/ [OR]
     RewriteCond %{REQUEST_URI} ^/js/
     RewriteRule ^ - [L]

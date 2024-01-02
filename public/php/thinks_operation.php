@@ -26,18 +26,17 @@
         $temat = isset( $_POST[ 'temat' ] ) ? htmlspecialchars( $_POST[ 'temat' ] ) : '';
         $tresc = isset( $_POST[ 'tresc' ] ) ? htmlspecialchars( $_POST[ 'tresc' ] ) : '';
         $id = isset( $_SESSION[ 'user_id' ] ) ? $_SESSION[ 'user_id' ] : '';
-        $conn = connectToDatabase();
         $query = "SELECT * FROM uzytkownicy WHERE Iduzytkownika='$id'";
-        $QueryResult = executeQuery( $conn, $query );
+        $QueryResult = executeQuery( connectToDatabase(), $query );
         $row = mysqli_fetch_assoc( $QueryResult );
         if ( $row[ 'aktywowany' ] == 1 ) {
             if ( strlen( $temat ) && strlen( $tresc ) ) {
                 
-                if ( !$conn ) {
+                if ( !connectToDatabase() ) {
                     echo mysqli_connect_error();
                 } else {
                     $_SESSION[ 'Error' ] = 'Nowa rozkmina została dodana.';
-                    mysqli_query( $conn, "INSERT INTO rozkminy (temat, tresc, Iduzytkownika) VALUES ('$temat','$tresc','$id')" );
+                    mysqli_query( connectToDatabase(), "INSERT INTO rozkminy (temat, tresc, Iduzytkownika) VALUES ('$temat','$tresc','$id')" );
                     header( "Location:../rozkminy.php" );
                 }
             } else {
