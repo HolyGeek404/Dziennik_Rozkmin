@@ -3,25 +3,20 @@
 
 W tym projekcie chciałem stworzyć forum na którym można podzielić się swoimi przemyśleniami.
 
-Głównym celem projektu było udoskonalenie znajomości języka PHP oraz pracy z bazą danych MySql.\
+**Próba przypomnienia hasła**
 
-3 p.* Formularz przypomnienia hasła
-Oceniający podejmuje próbę przypomnienia hasła użytkownika.
+Otrzymanie maila z kodem do procedury zmiany hasła oraz linkiem do strony z procedurą. Wklejenie kody z maila.
+Weryfikacja z bazą danych i ustawienie że kod wygasa po godzinie. Przejscie na strone z formularzem usawienia nowego
+hasła.
 
-Próba przypomnienia hasła
-Oceniający odnajduje opcję przypomnienia hasła dla niezalogowanego użytkownika.
+**Nawigacja Tylko dla zalogowanych**
+Utworzenie menu z bazy danych:
 
-1 p.Otrzymanie maila
-Oceniający sprawdza, czy otrzymał wiadomość mailową z danymi do przypomnienia hasła
+1. Strona główna(ikona z napisem).
+2. Profil(bez linku, ikona)
+   2.1. Mój profil,
+   2.2. Wyloguj sie.
+3. Nowa rozkmina.
 
-2 p.Zmiana hasła na nowe
-Oceniający przy pomocy otrzymanych danych zmienia hasło na nowe.
-
-4 p.Nawigacja
-Oceniający weryfikuje, czy nawigacja na stronie generuje się na podstawie wpisów z bazy danych. Przyznaje się dodatkowe
-punkty, gdy nawigacja ma strukturę hierarchiczną.
-
-5 p.Odpowiedź zwrotna w postaci innego pliku niż HTML
-Jeżeli któraś z podstron lub odpowiedź z przesłania formularza jest zwracana jako inny niż standardowy plik, np. CSV,
-JSON, obraz, pdf oraz plik ten jest renderowany przez PHP bez zapisywania go na serwerze, oceniający przyznaje punkty w
-zależności od złożoności. Punktów nie przyznaje się, gdy funkcjonalność nie ma sensu w projekcie.
+**Odpowiedź zwrotna w postaci innego pliku niż HTML**
+Mozliwość pobtranie przez autora wpisu jego odpowiednika w wersji CSV a najlepiej PDF.
