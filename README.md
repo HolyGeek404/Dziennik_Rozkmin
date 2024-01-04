@@ -3,12 +3,6 @@
 
 W tym projekcie chciałem stworzyć forum na którym można podzielić się swoimi przemyśleniami.
 
-**Próba przypomnienia hasła**
-
-Otrzymanie maila z kodem do procedury zmiany hasła oraz linkiem do strony z procedurą. Wklejenie kody z maila.
-Weryfikacja z bazą danych i ustawienie że kod wygasa po godzinie. Przejscie na strone z formularzem usawienia nowego
-hasła.
-
 **Nawigacja Tylko dla zalogowanych**
 Utworzenie menu z bazy danych:
 
