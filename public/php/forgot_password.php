@@ -1,61 +1,79 @@
 <?php
     session_start();
     require_once 'connect.php';
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-
-        if ($email) {
-            if (emailExistsInDatabase($email)) {
-                $newPassword = generateRandomPassword();
-
-                updatePasswordInDatabase($email, $newPassword);
-
+    
+    if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
+        $email = filter_input( INPUT_POST, 'email', FILTER_VALIDATE_EMAIL );
+        
+        if ( $email ) {
+            if ( emailExistsInDatabase( $email ) ) {
+                $verificationCode = generateVerificationCode();
+                
+                // Dodaj kod do bazy danych w tabeli password_reset
+                addVerificationCodeToDatabase( $email, $verificationCode );
+                
+                // Utwórz link do strony zmiany hasła z kodem
+                $resetLink = "http://localhost/reset_password.php?code=$verificationCode";
+                
+                // Wyślij maila z linkiem
                 $subject = "Password Reset";
-                $message = "Your new password is: $newPassword";
-
-                $_SESSION['email'] = $email;
-                $_SESSION['subject'] = $subject;
-                $_SESSION['message'] = $message;
-                header("Location: send_mail.php");
+                $message = "Click the following link to reset your password: $resetLink";
+                
+                $_SESSION[ 'email' ] = $email;
+                $_SESSION[ 'subject' ] = $subject;
+                $_SESSION[ 'message' ] = $message;
+                header( "Location: send_mail.php" );
                 exit();
             } else {
-                $_SESSION['Error'] = "Użytkownik o takim emailu nie istnieje.";
-                header("Location: /");
+                $_SESSION[ 'Error' ] = "Użytkownik o takim emailu nie istnieje.";
+                header( "Location: /" );
                 exit();
             }
         }
     }
-
-    function emailExistsInDatabase($email): bool
+    
+    function emailExistsInDatabase( $email ): bool
     {
         $conn = ConnectToDatabase();
-        $stmt = $conn->prepare("SELECT * FROM uzytkownicy WHERE email = ?");
-        $stmt->bind_param("s", $email);
+        $stmt = $conn->prepare( "SELECT * FROM uzytkownicy WHERE email = ?" );
+        $stmt->bind_param( "s", $email );
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-
+        
         return $result->num_rows > 0;
     }
-
-    function generateRandomPassword($length = 8): string
+    
+    function generateVerificationCode( $length = 8 ): string
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $password = '';
-        for ($i = 0; $i < $length; $i++) {
-            $password .= $characters[rand(0, strlen($characters) - 1)];
+        $code = '';
+        for ( $i = 0; $i < $length; $i++ ) {
+            $code .= $characters[ rand( 0, strlen( $characters ) - 1 ) ];
         }
-        return $password;
+        return $code;
     }
-
-    function updatePasswordInDatabase($email, $password): void
+    
+    function addVerificationCodeToDatabase( $email, $code ): void
     {
         $conn = ConnectToDatabase();
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $conn->prepare("UPDATE uzytkownicy SET haslo = ? WHERE email = ?");
-        $stmt->bind_param("ss", $hashedPassword, $email);
+        $user_id = getUserIdByEmail( $email ); // Pobierz user_id z tabeli uzytkownicy
+        $stmt = $conn->prepare( "INSERT INTO password_reset (user_id, verification_code, verification_expires) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))" );
+        $stmt->bind_param( "is", $user_id, $code );
         $stmt->execute();
         $stmt->close();
     }
-?>
+    
+    function getUserIdByEmail( $email )
+    {
+        $conn = ConnectToDatabase();
+        $stmt = $conn->prepare( "SELECT Iduzytkownika FROM uzytkownicy WHERE email = ?" );
+        $stmt->bind_param( "s", $email );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
+        
+        return $row[ 'Iduzytkownika' ];
+    }
+    
