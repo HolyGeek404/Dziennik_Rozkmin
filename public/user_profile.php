@@ -70,11 +70,9 @@
             </div>
         </div>
         <div class="about_user">
-            <div class="user_profile_info current_user_profile_info" onclick="showTab('about_user_description')">O
-                mnie
-            </div>
+            <div class="user_profile_info current_user_profile_info" onclick="showTab('about_user_description')">O mnie</div>
             <div class="user_profile_info" onclick="showTab('about_user_settings')">Ustawienia</div>
-            <!--            <div class="user_profile_info" onclick="showTab('about_user_friends')">Przyjaciele</div>-->
+            <div class="user_profile_info" onclick="showTab('about_user_thinks')">Moje Rozkminy</div>
 
             <div id="about_user_description" class="about_user_content" style="display: block;">
                 <div class="about_user_description">
@@ -82,81 +80,86 @@
                 </div>
                 <button id="editAboutMeBtn">Edytuj informacje o sobie</button>
                 <form id="aboutMeForm" method="post" action="php/change_user_data.php" style="display: none;">
-                    <textarea id="aboutMe" name="aboutMe"
-                              rows="4"
-                              cols="95"><?php echo User_object( 'Omnie', $id, ConnectToDatabase() ); ?></textarea>
+                    <textarea id="aboutMe" name="aboutMe" rows="4" cols="95">
+                        <?php echo User_object( 'Omnie', $id, ConnectToDatabase() ); ?>
+                    </textarea>
                     <input type="hidden" name="action" value="updateAboutMe">
                     <input type="submit" value="Zapisz zmiany">
                 </form>
-                <div class="about_user_thinks">
-                    <span>Moje rozkminy</span>
-                    <div class="think">
-                        <ul>
-                            <?php
-                                $resultThinksArrary = UserThink( $id, ConnectToDatabase() );
-                                
-                                while ( $row = mysqli_fetch_assoc( $resultThinksArrary ) ) {
-                                    $idrozkminy = $row[ 'idrozkminy' ];
-                                    $temat = $row[ 'temat' ];
-                                    
-                                    echo "<li><a href='tresc_rozkminy.php?Idrozkminy=$idrozkminy'>$temat</a></li>";
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <div id="about_user_settings" class="about_user_content" style="display: none;">
                 <div class="about_user_thinks">
-                    <div class="changeImg">
-                        <span>Zmiana avatara</span>
-                        <form method="post" enctype="multipart/form-data" action="php/change_user_data.php"
-                              style="margin: 20px; color: #0089a4">
-                            <input type="hidden" name="action" value="changeImg">
-                            <input type="file" name="img">
-                            <input type="submit" value="Zmień obraz">
-                        </form>
-                    </div>
-                    <div class="changePass">
-                        <span>Zmiana hasła</span>
-                        <form id="changePasswordForm" method="post" action="php/change_user_data.php"
-                              style="margin: 20px; color: #0089a4">
-                            <label for="currentPassword">Obecne Hasło:</label>
-                            <input type="password" id="currentPassword" name="currentPassword" required>
+                   <div id="user_settings_container">
+                       <div class="changeImg">
+                           <span>Zmiana avatara</span>
+                           <form method="post" enctype="multipart/form-data" action="php/change_user_data.php"
+                                 style="margin: 20px; color: #0089a4">
+                               <input type="hidden" name="action" value="changeImg">
+                               <label for="file-upload" class="custom-file-upload">
+                                    Wybierz obraz
+                               </label>
+                               <input id="file-upload" name="img" type="file"/>
+                               <input type="submit" value="Zmień obraz">
+                           </form>
+                       </div>
+                       <div class="changePass">
+                           <span>Zmiana hasła</span>
+                           <form id="changePasswordForm" method="post" action="php/change_user_data.php"
+                                 style="margin: 20px; color: #0089a4">
+                               <label for="currentPassword">Obecne Hasło:</label>
+                               <input type="password" id="currentPassword" name="currentPassword" required>
 
-                            <br>
+                               <br>
 
-                            <label for="newPassword">Nowe Hasło:</label>
-                            <input type="password" id="newPassword" name="newPassword" required>
+                               <label for="newPassword">Nowe Hasło:</label>
+                               <input type="password" id="newPassword" name="newPassword" required>
 
-                            <br>
+                               <br>
 
-                            <label for="confirmNewPassword">Potwierdź Nowe Hasło:</label>
-                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
-                            <span id="passwordError" class="error"></span>
+                               <label for="confirmNewPassword">Potwierdź Nowe Hasło:</label>
+                               <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                               <span id="passwordError" class="error"></span>
 
-                            <br>
-                            <input type="hidden" name="action" value="changePasswordForm">
-                            <input type="submit" value="Zmień Hasło">
-                        </form>
-                        <div id="error_message"></div>
-                    </div>
-                    <div class="changeNick">
-                        <span>Zmiana nicku</span>
-                        <form method="post" enctype="multipart/form-data" action="php/change_user_data.php">
-                        <textarea id="aboutMe" name="nick" required
+                               <br>
+                               <input type="hidden" name="action" value="changePasswordForm">
+                               <input type="submit" value="Zmień Hasło">
+                           </form>
+                           <div id="error_message"></div>
+                       </div>
+                       <div class="changeNick">
+                           <span>Zmiana nicku</span>
+                           <form method="post" enctype="multipart/form-data" action="php/change_user_data.php">
+                               <textarea id="aboutMe" name="nick" required
                                   rows="1"
                                   cols="50"><?php echo User_object( 'nick', $id, ConnectToDatabase() ); ?></textarea>
-                            <br>
-                            <input type="hidden" name="action" value="changeNick">
-                            <input type="submit" value="Zapisz zmiany">
-                        </form>
-                    </div>
+                               <br>
+                               <input type="hidden" name="action" value="changeNick">
+                               <input type="submit" value="Zapisz zmiany">
+                           </form>
+                       </div>
+                   </div>
                 </div>
             </div>
-            <div id="about_user_friends" class="about_user_content" style="display: none;">
+            <div id="about_user_thinks" class="about_user_content" style="display: none;">
+                <div id="user_thinks_container">
+                    <div class="about_user_thinks">
+                        <span>Moje rozkminy</span>
+                        <div class="think">
+                            <ul>
+                                <?php
+                                $resultThinksArrary = UserThink( $id, ConnectToDatabase() );
 
-                </form>
+                                while ( $row = mysqli_fetch_assoc( $resultThinksArrary ) ) {
+                                    $idrozkminy = $row[ 'idrozkminy' ];
+                                    $temat = $row[ 'temat' ];
+
+                                    echo "<li><a href='tresc_rozkminy.php?Idrozkminy=$idrozkminy'>$temat</a></li>";
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

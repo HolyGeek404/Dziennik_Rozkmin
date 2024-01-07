@@ -7,9 +7,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>Document</title>
-    <!DOCTYPE html>
-    <html lang="en">
+    <title>Rozkmina.pl - przegląd</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,10 +19,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- Dodaj inne elementy head, takie jak linki do stylów CSS, skrypty JS itp. -->
-
-    <title>Document</title>
     <script src="./js/cutthinks.js"></script>
 
 </head>
@@ -33,9 +27,7 @@
     <button>Powrót</button>
 </a>
 <div id="container">
-    <div id="user_side_bar">
-
-    </div>
+    <div id="user_side_bar"></div>
     <div id="content">
         <?php
             foreach ( $thinks as $think ) {

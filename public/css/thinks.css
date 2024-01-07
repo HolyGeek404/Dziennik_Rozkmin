@@ -40,7 +40,6 @@ button {
     background-color: #008aa4;
     color: #022f38;
     outline: none;
-    border: none;
     font-size: 17px;
     text-align: center;
     margin: 20px auto;
@@ -53,8 +52,6 @@ button {
 #content {
     width: 800px;
     margin: 30px auto;
-    /*background-color: #4286f4;*/
-    /*box-shadow: 0px 0px 9px 0px rgba(66, 134, 244, 0.75);*/
 }
 
 .thinks {
@@ -62,6 +59,8 @@ button {
     height: 200px;
     margin-bottom: 100px;
     background-color: #274d8c;
+    border: 2px solid #4286f4;
+    border-radius: 10px;
 }
 
 .user_info {
@@ -88,7 +87,6 @@ button {
 .think_container {
     width: 630px;
     height: 180px;
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.75);
     float: left;
     margin: 10px;
 }
