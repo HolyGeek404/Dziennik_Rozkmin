@@ -209,7 +209,7 @@
         
         $dataThink = viewThink( $idrozkminy );
         $data = [
-            [ 'Title', 'Content' ],
+            [ 'Tytuł', 'Treść' ],
             [ $dataThink[ 'temat' ], $dataThink[ 'tresc' ] ],
         ];
         
@@ -238,9 +238,9 @@
         $pdf->AddPage();
         $pdf->SetFont( 'Arial', '', 12 );
         
-        $pdf->Cell( 0, 10, 'Title: ' . $dataThink[ 'temat' ], 0, 1 );
+        $pdf->Cell( 0, 10, 'Tytuł: ' . $dataThink[ 'temat' ], 0, 1 );
         $pdf->Ln();
-        $pdf->MultiCell( 0, 10, 'Content: ' . $dataThink[ 'tresc' ] );
+        $pdf->MultiCell( 0, 10, 'Treść: ' . $dataThink[ 'tresc' ] );
         
         $pdf->Output( $dataThink[ 'temat' ] . '.pdf', 'D' );
     }
