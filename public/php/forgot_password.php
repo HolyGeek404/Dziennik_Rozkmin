@@ -9,13 +9,10 @@
             if ( emailExistsInDatabase( $email ) ) {
                 $verificationCode = generateVerificationCode();
                 
-                // Dodaj kod do bazy danych w tabeli password_reset
                 addVerificationCodeToDatabase( $email, $verificationCode );
                 
-                // Utwórz link do strony zmiany hasła z kodem
                 $resetLink = "http://localhost/reset_password.php?code=$verificationCode";
                 
-                // Wyślij maila z linkiem
                 $subject = "Password Reset";
                 $message = "Click the following link to reset your password: $resetLink";
                 
@@ -57,7 +54,7 @@
     function addVerificationCodeToDatabase( $email, $code ): void
     {
         $conn = ConnectToDatabase();
-        $user_id = getUserIdByEmail( $email ); // Pobierz user_id z tabeli uzytkownicy
+        $user_id = getUserIdByEmail( $email );
         $stmt = $conn->prepare( "INSERT INTO password_reset (user_id, verification_code, verification_expires) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 1 HOUR))" );
         $stmt->bind_param( "is", $user_id, $code );
         $stmt->execute();

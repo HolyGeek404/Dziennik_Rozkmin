@@ -16,7 +16,6 @@
             $_SESSION[ 'email' ] = $_POST[ 'email' ];
             header( 'Location: index.php' );
         } else {
-            // Przekieruj dane do pliku odpowiedzialnego za wysyłanie maila
             $_SESSION[ 'email' ] = $email;
             $_SESSION[ 'subject' ] = $_POST[ 'subject' ];
             $_SESSION[ 'message' ] = $_POST[ 'message' ];

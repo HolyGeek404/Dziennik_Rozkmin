@@ -125,7 +125,6 @@
         if ( connectToDatabase()->connect_errno != 0 ) {
             echo "Coś nie pykło" . connectToDatabase()->connect_errno;
         } else {
-            // Sprawdź, czy $Idrozkminy nie jest pusty
             if ( !empty( $Idrozkminy ) ) {
                 $query = "SELECT temat, tresc
                       FROM rozkminy
