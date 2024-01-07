@@ -1,5 +1,6 @@
 <?php
     require_once( './php/session.php' );
+    require_once( './php/menu.php' );
     
     error_reporting( 0 );
 
@@ -18,9 +19,9 @@
     <title>Rozkmina.pl - tu gdzie tworzy się myśl</title>
 </head>
 <body>
-<a href="/">
-    <button>Powrót</button>
-</a>
+<div id="container" style="height: auto">
+    <div class="menu"><?php echo generateMenu() ?></div>
+</div>
 <label>
     <form action="php/thinks_operation.php" method="post">
         <input type="text" name="temat" placeholder="Temat rozkminy" value="<?php echo htmlspecialchars( $temat ); ?>">

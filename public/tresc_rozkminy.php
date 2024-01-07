@@ -1,6 +1,7 @@
 <?php
     require_once "./php/connect.php";
     require_once "./php/thinks_operation.php";
+    require_once "./php/menu.php";
     $data = viewThink();
 ?>
 <!DOCTYPE html>
@@ -35,9 +36,10 @@
     </style>
 </head>
 <body>
-<a href="/rozkminy.php">
-    <button>Powrót</button>
-</a>
+<div id="container" style="height: auto">
+    <div class="menu"><?php echo generateMenu() ?></div>
+</div>
+
 </script>
 <div id="topic">
     <?php
