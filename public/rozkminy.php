@@ -1,6 +1,7 @@
 <?php
     require_once "./php/connect.php";
     require_once "./php/thinks_operation.php";
+    require_once "./php/menu.php";
     $thinks = viewThinks();
 
 ?>
@@ -22,17 +23,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <!-- Dodaj inne elementy head, takie jak linki do stylów CSS, skrypty JS itp. -->
-
     <title>Document</title>
     <script src="./js/cutthinks.js"></script>
+    <style>
 
+
+    </style>
 </head>
 <body>
-<a href="/">
-    <button>Powrót</button>
-</a>
 <div id="container">
+    <div class="menu"><?php echo generateMenu() ?></div>
     <div id="user_side_bar">
 
     </div>
@@ -82,6 +82,7 @@ END;
     </div>
 </div>
 <script src="js/popup.js"></script>
+<script src="js/menu.js"></script>
 <?php
     
     if ( isset( $_SESSION[ 'Error' ] ) ) {
