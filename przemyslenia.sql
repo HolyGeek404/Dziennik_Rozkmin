@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Sty 04, 2024 at 07:49 PM
+-- Generation Time: Sty 07, 2024 at 06:02 PM
 -- Wersja serwera: 8.2.0
 -- Wersja PHP: 8.1.17
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `przemyslenia`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `menu`
+--
+
+CREATE TABLE `menu` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `parent_id` int DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`id`, `name`, `parent_id`, `url`) VALUES
+(1, 'Strona główna', NULL, '/'),
+(2, 'Rozkminy', NULL, '/rozkminy.php'),
+(3, 'Mój profil', NULL, '/user_profile.php'),
+(4, 'Wyloguj się', 3, '/php/logout.php'),
+(5, 'Nowa rozkmina', NULL, '/nowa_rozkmina.php');
 
 -- --------------------------------------------------------
 
@@ -59,7 +83,8 @@ INSERT INTO `rozkminy` (`idrozkminy`, `temat`, `tresc`, `Iduzytkownika`) VALUES
 (5, 'Czy ziemia jest okrÄ…gÅ‚a ?', 'JuÅ¼ staroÅ¼ytni byli podzieleni co do opinii na temat ksztaÅ‚tu Ziemi. MieszkaÅ„cy Mezopotamii i Egiptu widzieli jÄ… jako pÅ‚askÄ…, z tym Å¼e ci ostatni przekonani byli o jej kwadratowym ksztaÅ‚cie. Podobnie myÅ›lano w Chinach, gdzie poglÄ…dy o kwadratowej Ziemi nakrytej pÃ³Å‚okrÄ…gÅ‚Ä… kopuÅ‚Ä… niebios zostaÅ‚y zmienione dopiero wâ€¦ XVII wieku za sprawÄ… chrzeÅ›cijaÅ„skich misjonarzy docierajÄ…cych do PaÅ„stwa Åšrodka.\r\n\r\nTeoria pÅ‚askiej Ziemi nie byÅ‚a jednak w peÅ‚ni przekonujÄ…ca dla staroÅ¼ytnych GrekÃ³w. JednÄ… z obserwacji, ktÃ³ra budziÅ‚a powaÅ¼ne wÄ…tpliwoÅ›ci co do ksztaÅ‚tu Ziemi, byÅ‚o stopniowe wyÅ‚anianie siÄ™ statkÃ³w zza linii horyzontu â€“ najpierw masztÃ³w, a potem kadÅ‚uba. Gdyby Ziemia byÅ‚a pÅ‚aska â€“ rozumowali niektÃ³rzy â€“ statki powinny byÄ‡ widoczne z daleka w caÅ‚ej okazaÅ‚oÅ›ci. Powierzchnia Ziemi jest zatem wypukÅ‚a. Wniosek ten prowadziÅ‚ do myÅ›li, Å¼e Ziemia moÅ¼e mieÄ‡ ksztaÅ‚t kuli â€“ ksztaÅ‚t, w rozumieniu GrekÃ³w najdoskonalszy, a wiÄ™c taki, na jaki zasÅ‚ugiwaÅ‚a.', 12),
 (6, 'JeÅ›li wszechmogÄ…cy BÃ³g stworzy kamieÅ„ ktÃ³rego nie bÄ™dzie mÃ³gÅ‚ podnieÅ› to czy to oznacza, Å¼e nie jest juÅ¼ wszechmogÄ…cy ?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus luctus tortor non efficitur. Pellentesque volutpat massa sit amet nisi blandit, vel blandit felis mollis. Vestibulum et ligula at nibh pellentesque mollis nec vitae tortor. Curabitur pharetra efficitur faucibus. Quisque a feugiat odio, sodales ullamcorper libero. Suspendisse porttitor gravida turpis sit amet rutrum. Quisque tempor malesuada quam eu efficitur. Nunc vulputate massa nec ante ultricies euismod. Suspendisse in dictum massa.\r\n\r\n', 14),
 (7, 'CZY WOJTEK KACZMAREK JEST BOGIEM ?', '\"siedze po drugiej stronie rzeki\r\nsledzi mnie dementor\"\r\n\r\n~ Wojtek Kaczmarek 2019', 21),
-(8, 'ASP.NET Core 3 MVC vs PHP 7.0 co lepsze ?', 'OczywiÅ›cie Å¼e ASP.NET :)', 10);
+(8, 'ASP.NET Core 3 MVC vs PHP 7.0 co lepsze ?', 'OczywiÅ›cie Å¼e ASP.NET :)', 10),
+(10, 'asdas', 'asdasdasd', 22);
 
 -- --------------------------------------------------------
 
@@ -109,6 +134,13 @@ INSERT INTO `uzytkownicy` (`Iduzytkownika`, `nick`, `haslo`, `email`, `user_img`
 --
 
 --
+-- Indeksy dla tabeli `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_id` (`parent_id`);
+
+--
 -- Indeksy dla tabeli `password_reset`
 --
 ALTER TABLE `password_reset`
@@ -133,6 +165,12 @@ ALTER TABLE `uzytkownicy`
 --
 
 --
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `password_reset`
 --
 ALTER TABLE `password_reset`
@@ -142,7 +180,7 @@ ALTER TABLE `password_reset`
 -- AUTO_INCREMENT for table `rozkminy`
 --
 ALTER TABLE `rozkminy`
-  MODIFY `idrozkminy` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idrozkminy` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `uzytkownicy`
@@ -153,6 +191,12 @@ ALTER TABLE `uzytkownicy`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `menu`
+--
+ALTER TABLE `menu`
+  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `menu` (`id`);
 
 --
 -- Constraints for table `password_reset`
