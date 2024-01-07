@@ -1,5 +1,6 @@
 <?php
     require_once 'connect.php';
+    
     function generateMenu( $parent_id = NULL )
     {
         if ( isset( $_SESSION[ 'user_id' ] ) ) {
@@ -9,7 +10,10 @@
             while ( $row = $result->fetch_assoc() ) {
                 $menu .= "<li><a href='{$row['url']}'><button>{$row['name']}</button></a>";
                 
-                $menu .= generateMenu( $row[ 'id' ] );
+                $subMenu = generateMenu( $row[ 'id' ] );
+                if ( $subMenu !== '<ul></ul>' ) {
+                    $menu .= $subMenu;
+                }
                 
                 $menu .= "</li>";
             }
