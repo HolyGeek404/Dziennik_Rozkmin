@@ -3,18 +3,19 @@
     require_once( './php/connect.php' );
     require_once( './php/session.php' );
     require_once( './php/change_user_data.php' );
+    require_once( './php/menu.php' );
+    
     
     $id = $_SESSION[ 'user_id' ];
     QueryUserProfile( $id, ConnectToDatabase() );
     
     if ( isset( $_POST[ 'sendmail' ] ) ) {
         $email = filter_input( INPUT_POST, 'email', FILTER_VALIDATE_EMAIL );
-
+        
         if ( empty( $email ) ) {
             $_SESSION[ 'email' ] = $_POST[ 'email' ];
             header( 'Location: index.php' );
         } else {
-            // Przekieruj dane do pliku odpowiedzialnego za wysyłanie maila
             $_SESSION[ 'email' ] = $email;
             $_SESSION[ 'subject' ] = $_POST[ 'subject' ];
             $_SESSION[ 'message' ] = $_POST[ 'message' ];
@@ -39,9 +40,6 @@
 
 </head>
 <body>
-<a href="index.php">
-    <button>Powrót</button>
-</a>
 <div>
     <?php
         if ( isset( $_SESSION[ 'mail_result' ] ) ) {
@@ -50,6 +48,7 @@
         }
     ?></div>
 <div id="container">
+    <div class="menu"><?php echo generateMenu() ?></div>
     <div id="content">
         <div id="user">
             <?php
@@ -165,7 +164,7 @@
     </div>
 </div>
 <style>
-    #editAboutMeBtn{
+    #editAboutMeBtn {
         width: 250px;
         font-weight: bold;
     }
