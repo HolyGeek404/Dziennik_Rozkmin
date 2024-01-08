@@ -23,21 +23,28 @@
             }
         }
     }
-    
-    function changeImg( $conn ): void
+
+
+    function changeImg($conn): void
     {
-        $img = addslashes( file_get_contents( $_FILES[ 'img' ][ 'tmp_name' ] ) );
-        
-        $x = $_SESSION[ 'user_id' ];
-        
-        $query = "UPDATE uzytkownicy SET user_img = ? WHERE Iduzytkownika=?";
-        $stmt = $conn->prepare( $query );
-        $stmt->bind_param( "si", $img, $x );
-        $stmt->execute();
-        $stmt->close();
-        
-        $_SESSION[ 'Error' ] = 'Avatar został zmieniony';
-        header( "Location: ../user_profile.php" );
+        if ($_FILES['img']['tmp_name'] != null)
+        {
+            $img = addslashes(file_get_contents($_FILES['img']['tmp_name']));
+
+            $x = $_SESSION['user_id'];
+
+            $query = "UPDATE uzytkownicy SET user_img = ? WHERE Iduzytkownika=?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $img, $x);
+            $stmt->execute();
+            $stmt->close();
+
+            $_SESSION['Error'] = 'Avatar został zmieniony';
+        }
+        else{
+            $_SESSION['Error'] = 'Nie załadowano żadnego zdjęcia.';
+        }
+        header("Location: ../user_profile.php");
     }
     
     function changePassword( $conn ): void
@@ -91,8 +98,8 @@
             header( "Location: ../user_profile.php" );
         }
     }
-    
-    function updateAboutMe( $conn )
+
+    function updateAboutMe($conn): void
     {
         $newAboutMe = $_POST[ 'aboutMe' ];
         $userId = $_SESSION[ 'user_id' ];
@@ -106,8 +113,8 @@
         $_SESSION[ 'Error' ] = 'Opis został zmieniony';
         header( 'Location: ../user_profile.php' );
     }
-    
-    function changeNick( $conn )
+
+    function changeNick($conn): void
     {
         $nick = $_POST[ 'nick' ];
         $userId = $_SESSION[ 'user_id' ];

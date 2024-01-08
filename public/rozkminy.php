@@ -8,9 +8,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>Document</title>
-    <!DOCTYPE html>
-    <html lang="en">
+    <title>Rozkmina.pl - przegląd</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +22,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <title>Document</title>
+
     <script src="./js/cutthinks.js"></script>
     <style>
 
@@ -32,10 +31,12 @@
 </head>
 <body>
 <div id="container">
+
     <div class="menu"><?php echo generateMenu() ?></div>
     <div id="user_side_bar">
 
     </div>
+
     <div id="content">
         <?php
             foreach ( $thinks as $think ) {
