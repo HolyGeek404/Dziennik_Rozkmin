@@ -6,7 +6,7 @@ services:
     links:
       - php
     volumes:
-      - ./public:/usr/local/apache2/htdocs
+      - ./public_html:/usr/local/apache2/htdocs
     ports:
       - '80:80'
   php:
@@ -15,19 +15,20 @@ services:
     depends_on:
       - db
     volumes:
-      - ./public:/usr/local/apache2/htdocs
+      - ./public_html:/usr/local/apache2/htdocs
     working_dir: /usr/local/apache2/htdocs
     ports:
       - '9000:9000'
   db:
     container_name: db
-    image: mysql
+    image: mysql:latest
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: G#&jM9Xe$2p
       MYSQL_DATABASE: przemyslenia
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+      MYSQL_INIT_CONNECT: 'SET GLOBAL host_cache_size=0;'
     ports:
       - '9906:3306'
     volumes:

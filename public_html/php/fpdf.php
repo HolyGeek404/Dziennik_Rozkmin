@@ -1061,7 +1061,7 @@
                         header( 'Content-Type: application/pdf' );
                         header( 'Content-Disposition: inline; ' . $this->_httpencode( 'filename', $name, $isUTF8 ) );
                         header( 'Cache-Control: private, max-age=0, must-revalidate' );
-                        header( 'Pragma: public' );
+                        header( 'Pragma: public_html' );
                     }
                     echo $this->buffer;
                     break;
@@ -1071,7 +1071,7 @@
                     header( 'Content-Type: application/pdf' );
                     header( 'Content-Disposition: attachment; ' . $this->_httpencode( 'filename', $name, $isUTF8 ) );
                     header( 'Cache-Control: private, max-age=0, must-revalidate' );
-                    header( 'Pragma: public' );
+                    header( 'Pragma: public_html' );
                     echo $this->buffer;
                     break;
                 case 'F':
